@@ -1,0 +1,15 @@
+version: "3"
+services:
+    demo-postgres:
+        image: postgres:15.1
+        container_name: demo-postgres
+        stdin_open: true
+        tty: true
+        shm_size: '150gb'
+        ports:
+            - "5434:5432"
+        environment:
+            POSTGRES_USER: "postgres"
+            POSTGRES_PASSWORD: "postgres"
+        volumes:
+            - /home/shpark/postgresql:/var/lib/postgresql/data

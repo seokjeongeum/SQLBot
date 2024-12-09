@@ -1,0 +1,50 @@
+local exp_name = "spider-kor-colemb-noop";
+{
+    logdir: "logdir/" + exp_name,
+    model_config: "configs/spider/nl2code-bert.jsonnet",
+    model_config_args: {
+        plm_lr: 1e-7,
+        plm_batch_size: 2,
+        plm_data_path: 'data/semiconduct_dic/semiconduct_dic.txt',
+        plm_num_batch_accumulated: 1,
+        plm_max_train_steps: 40000,
+        data_path: 'data/spider-kor-filtered/',
+        bert_version: "markussagen/xlm-roberta-longformer-base-4096",
+        
+        bs: 8,
+        num_batch_accumulated: 1,
+        seed: 0,
+        preprocess_save_path: exp_name,
+        use_kor_nng_translate: false,
+        use_column_description: true,
+        use_column_desc_emb: true,
+        grammar_name: "spider",
+        include_literals: true,
+
+        summarize_header: "avg",
+        use_column_type: false,
+        max_steps: 81000,
+        num_layers: 8,
+        lr: 7.44e-4,
+        bert_lr: 3e-6,
+        att: 4,
+        end_lr: 0,
+        sc_link: true,
+        cv_link: true,
+        use_align_mat: true,
+        use_align_loss: true,
+        bert_token_type: true,
+        decoder_hidden_size: 512,
+        end_with_from: true, # equivalent to "SWGOIF" if true
+        clause_order: null, # strings like "SWGOIF", it will be prioriotized over end_with_from 
+        join_cond: false,
+    },
+
+    eval_name: exp_name,
+    eval_output: "__LOGDIR__/ie_dirs",
+    eval_beam_size: 1,
+    eval_use_heuristic: true,
+    eval_steps: [],
+    eval_section: "val",
+    loss_type: "label_smooth",
+}

@@ -1,0 +1,2 @@
+example_num: 3
+llm_address: "http://localhost:30000/generate"

@@ -1,0 +1,2450 @@
+[
+    {
+        "sql": "SELECT department.Creation FROM department GROUP BY department.Creation ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "department_management"
+    },
+    {
+        "sql": "SELECT city.Status FROM city GROUP BY city.Status ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "farm"
+    },
+    {
+        "sql": "SELECT city.Status FROM city GROUP BY city.Status ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "farm"
+    },
+    {
+        "sql": "SELECT city.Official_Name FROM city WHERE city.City_ID NOT IN (SELECT farm_competition.Host_city_ID FROM farm_competition)",
+        "db_id": "farm"
+    },
+    {
+        "sql": "SELECT city.Official_Name FROM city WHERE city.City_ID NOT IN (SELECT farm_competition.Host_city_ID FROM farm_competition)",
+        "db_id": "farm"
+    },
+    {
+        "sql": "SELECT Student_Course_Registrations.student_id FROM Student_Course_Registrations GROUP BY Student_Course_Registrations.student_id ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "student_assessment"
+    },
+    {
+        "sql": "SELECT Student_Course_Registrations.student_id FROM Student_Course_Registrations GROUP BY Student_Course_Registrations.student_id ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "student_assessment"
+    },
+    {
+        "sql": "SELECT trip.start_station_name, trip.start_station_id FROM trip WHERE trip.start_date LIKE 'terminal' GROUP BY trip.start_station_name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT trip.start_station_name, trip.start_station_id FROM trip WHERE trip.start_date LIKE 'terminal' GROUP BY trip.start_station_name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT trip.bike_id FROM trip WHERE trip.zip_code = 'terminal' GROUP BY trip.bike_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT weather.cloud_cover FROM weather WHERE weather.zip_code = 'terminal' GROUP BY weather.cloud_cover ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT weather.cloud_cover FROM weather WHERE weather.zip_code = 'terminal' GROUP BY weather.cloud_cover ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT weather.zip_code FROM weather GROUP BY weather.zip_code ORDER BY Avg(weather.mean_sea_level_pressure_inches) Asc LIMIT 1",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT weather.zip_code FROM weather GROUP BY weather.zip_code ORDER BY Avg(weather.mean_sea_level_pressure_inches) Asc LIMIT 1",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT station.id FROM station WHERE station.lat > 'terminal' EXCEPT SELECT status.station_id FROM status GROUP BY status.station_id HAVING Min(status.bikes_available) < 'terminal'",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT trip.id FROM trip WHERE trip.duration >= (SELECT Avg(trip.duration) FROM trip WHERE trip.zip_code = 'terminal')",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM station WHERE station.city = 'Mountain View'",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM station WHERE station.city = 'Mountain View'",
+        "db_id": "bike_1"
+    },
+    {
+        "sql": "SELECT publication.Publication_Date FROM publication GROUP BY publication.Publication_Date ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "book_2"
+    },
+    {
+        "sql": "SELECT book.Title FROM book WHERE book.Book_ID NOT IN (SELECT publication.Book_ID FROM publication)",
+        "db_id": "book_2"
+    },
+    {
+        "sql": "SELECT musical.Nominee FROM musical GROUP BY musical.Nominee ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "musical"
+    },
+    {
+        "sql": "SELECT musical.Nominee FROM musical GROUP BY musical.Nominee ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "musical"
+    },
+    {
+        "sql": "SELECT musical.Result FROM musical GROUP BY musical.Result ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "musical"
+    },
+    {
+        "sql": "SELECT musical.Name FROM musical WHERE musical.Musical_ID NOT IN (SELECT actor.Musical_ID FROM actor)",
+        "db_id": "musical"
+    },
+    {
+        "sql": "SELECT musical.Name FROM musical WHERE musical.Musical_ID NOT IN (SELECT actor.Musical_ID FROM actor)",
+        "db_id": "musical"
+    },
+    {
+        "sql": "SELECT Avg(user_profiles.followers) FROM user_profiles WHERE user_profiles.uid NOT IN (SELECT tweets.uid FROM tweets)",
+        "db_id": "twitter_1"
+    },
+    {
+        "sql": "SELECT Avg(user_profiles.followers) FROM user_profiles WHERE user_profiles.uid IN (SELECT tweets.uid FROM tweets)",
+        "db_id": "twitter_1"
+    },
+    {
+        "sql": "SELECT aircraft.name FROM aircraft WHERE aircraft.distance > (SELECT Avg(aircraft.distance) FROM aircraft)",
+        "db_id": "flight_1"
+    },
+    {
+        "sql": "SELECT aircraft.name FROM aircraft WHERE aircraft.distance > (SELECT Avg(aircraft.distance) FROM aircraft)",
+        "db_id": "flight_1"
+    },
+    {
+        "sql": "SELECT employee.name FROM employee WHERE employee.salary > (SELECT Avg(employee.salary) FROM employee)",
+        "db_id": "flight_1"
+    },
+    {
+        "sql": "SELECT employee.name FROM employee WHERE employee.salary > (SELECT Avg(employee.salary) FROM employee)",
+        "db_id": "flight_1"
+    },
+    {
+        "sql": "SELECT flight.origin FROM flight GROUP BY flight.origin ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "flight_1"
+    },
+    {
+        "sql": "SELECT flight.destination FROM flight GROUP BY flight.destination ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "flight_1"
+    },
+    {
+        "sql": "SELECT flight.destination FROM flight GROUP BY flight.destination ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "flight_1"
+    },
+    {
+        "sql": "SELECT employee.eid FROM employee EXCEPT SELECT certificate.eid FROM certificate",
+        "db_id": "flight_1"
+    },
+    {
+        "sql": "SELECT employee.eid FROM employee EXCEPT SELECT certificate.eid FROM certificate",
+        "db_id": "flight_1"
+    },
+    {
+        "sql": "SELECT Allergy_Type.AllergyType FROM Allergy_Type GROUP BY Allergy_Type.AllergyType ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Allergy_Type.AllergyType FROM Allergy_Type GROUP BY Allergy_Type.AllergyType ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Allergy_Type.AllergyType FROM Allergy_Type GROUP BY Allergy_Type.AllergyType ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.LName FROM Student ORDER BY Student.Age Asc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.LName FROM Student ORDER BY Student.Age Asc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.StuID FROM Student WHERE Student.Age = (SELECT Max(Student.Age) FROM Student)",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.StuID FROM Student WHERE Student.Age = (SELECT Max(Student.Age) FROM Student)",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.Major FROM Student GROUP BY Student.Major ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.Major FROM Student ORDER BY Student.Major Desc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.Advisor FROM Student GROUP BY Student.Advisor ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.Advisor FROM Student GROUP BY Student.Advisor ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.StuID FROM Student WHERE Student.StuID NOT IN (SELECT Has_Allergy.StuID FROM Has_Allergy)",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Has_Allergy.Allergy FROM Has_Allergy GROUP BY Has_Allergy.Allergy ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Has_Allergy.Allergy FROM Has_Allergy GROUP BY Has_Allergy.Allergy ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.LName, Student.Age FROM Student WHERE Student.StuID IN (SELECT Has_Allergy.StuID FROM Has_Allergy WHERE Has_Allergy.Allergy = 'Cat' INTERSECT SELECT Has_Allergy.StuID FROM Has_Allergy WHERE Has_Allergy.Allergy = 'Milk')",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.Fname, Student.Sex FROM Student WHERE Student.StuID IN (SELECT Has_Allergy.StuID FROM Has_Allergy WHERE Has_Allergy.Allergy = 'Cat' EXCEPT SELECT Has_Allergy.StuID FROM Has_Allergy WHERE Has_Allergy.Allergy = 'Milk')",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT Student.Fname, Student.Major FROM Student WHERE Student.StuID NOT IN (SELECT Has_Allergy.StuID FROM Has_Allergy WHERE Has_Allergy.Allergy = 'Soy')",
+        "db_id": "allergy_1"
+    },
+    {
+        "sql": "SELECT invoices.billing_country, Count(*) FROM invoices GROUP BY invoices.billing_country ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "store_1"
+    },
+    {
+        "sql": "SELECT invoices.billing_country, Count(*) FROM invoices GROUP BY invoices.billing_country ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "store_1"
+    },
+    {
+        "sql": "SELECT invoices.billing_country, Sum(invoices.total) FROM invoices GROUP BY invoices.billing_country ORDER BY Sum(invoices.total) Desc LIMIT 1",
+        "db_id": "store_1"
+    },
+    {
+        "sql": "SELECT invoices.billing_country, Avg(invoices.total) FROM invoices GROUP BY invoices.billing_country ORDER BY Avg(invoices.total) Desc LIMIT 1",
+        "db_id": "store_1"
+    },
+    {
+        "sql": "SELECT editor.Age FROM editor GROUP BY editor.Age ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "journal_committee"
+    },
+    {
+        "sql": "SELECT editor.Name FROM editor WHERE editor.Editor_ID NOT IN (SELECT journal_committee.Editor_ID FROM journal_committee)",
+        "db_id": "journal_committee"
+    },
+    {
+        "sql": "SELECT Accounts.customer_id, Count(*) FROM Accounts GROUP BY Accounts.customer_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customers_card_transactions"
+    },
+    {
+        "sql": "SELECT Accounts.customer_id, Count(*) FROM Accounts GROUP BY Accounts.customer_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customers_card_transactions"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Customers WHERE Customers.customer_id NOT IN (SELECT Accounts.customer_id FROM Accounts)",
+        "db_id": "customers_card_transactions"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Customers WHERE Customers.customer_id NOT IN (SELECT Accounts.customer_id FROM Accounts)",
+        "db_id": "customers_card_transactions"
+    },
+    {
+        "sql": "SELECT Customers_Cards.customer_id, Count(*) FROM Customers_Cards GROUP BY Customers_Cards.customer_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customers_card_transactions"
+    },
+    {
+        "sql": "SELECT Customers_Cards.customer_id, Count(*) FROM Customers_Cards GROUP BY Customers_Cards.customer_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customers_card_transactions"
+    },
+    {
+        "sql": "SELECT Customers_Cards.card_type_code FROM Customers_Cards GROUP BY Customers_Cards.card_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customers_card_transactions"
+    },
+    {
+        "sql": "SELECT Customers_Cards.card_type_code FROM Customers_Cards GROUP BY Customers_Cards.card_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customers_card_transactions"
+    },
+    {
+        "sql": "SELECT Financial_Transactions.transaction_type FROM Financial_Transactions GROUP BY Financial_Transactions.transaction_type ORDER BY Sum(Financial_Transactions.transaction_amount) Desc LIMIT 1",
+        "db_id": "customers_card_transactions"
+    },
+    {
+        "sql": "SELECT Financial_Transactions.transaction_type FROM Financial_Transactions GROUP BY Financial_Transactions.transaction_type ORDER BY Sum(Financial_Transactions.transaction_amount) Desc LIMIT 1",
+        "db_id": "customers_card_transactions"
+    },
+    {
+        "sql": "SELECT track.Name, track.Location, track.Year_Opened FROM track WHERE track.Seating > (SELECT Avg(track.Seating) FROM track)",
+        "db_id": "race_track"
+    },
+    {
+        "sql": "SELECT race.Class FROM race GROUP BY race.Class ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "race_track"
+    },
+    {
+        "sql": "SELECT race.Class FROM race GROUP BY race.Class ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "race_track"
+    },
+    {
+        "sql": "SELECT track.Name FROM track WHERE track.Track_ID NOT IN (SELECT race.Track_ID FROM race)",
+        "db_id": "race_track"
+    },
+    {
+        "sql": "SELECT track.Name FROM track WHERE track.Track_ID NOT IN (SELECT race.Track_ID FROM race)",
+        "db_id": "race_track"
+    },
+    {
+        "sql": "SELECT shop.Shop_ID, shop.Address FROM shop WHERE shop.Score < (SELECT Avg(shop.Score) FROM shop)",
+        "db_id": "coffee_shop"
+    },
+    {
+        "sql": "SELECT shop.Address, shop.Num_of_staff FROM shop WHERE shop.Shop_ID NOT IN (SELECT happy_hour.Shop_ID FROM happy_hour)",
+        "db_id": "coffee_shop"
+    },
+    {
+        "sql": "SELECT happy_hour.Shop_ID, Count(*) FROM happy_hour GROUP BY happy_hour.Shop_ID ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "coffee_shop"
+    },
+    {
+        "sql": "SELECT happy_hour.Month FROM happy_hour GROUP BY happy_hour.Month ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "coffee_shop"
+    },
+    {
+        "sql": "SELECT Genre.Name FROM Genre GROUP BY Genre.GenreId ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "chinook_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Artist WHERE Artist.ArtistId NOT IN (SELECT Album.ArtistId FROM Album)",
+        "db_id": "chinook_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Artist WHERE Artist.ArtistId NOT IN (SELECT Album.ArtistId FROM Album)",
+        "db_id": "chinook_1"
+    },
+    {
+        "sql": "SELECT Available_Policies.policy_type_code FROM Available_Policies GROUP BY Available_Policies.policy_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "insurance_fnol"
+    },
+    {
+        "sql": "SELECT Available_Policies.policy_type_code FROM Available_Policies GROUP BY Available_Policies.policy_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "insurance_fnol"
+    },
+    {
+        "sql": "SELECT Count(*) FROM enzyme WHERE enzyme.id NOT IN (SELECT medicine_enzyme_interaction.enzyme_id FROM medicine_enzyme_interaction)",
+        "db_id": "medicine_enzyme_interaction"
+    },
+    {
+        "sql": "SELECT Count(*) FROM enzyme WHERE enzyme.id NOT IN (SELECT medicine_enzyme_interaction.enzyme_id FROM medicine_enzyme_interaction)",
+        "db_id": "medicine_enzyme_interaction"
+    },
+    {
+        "sql": "SELECT university.Founded FROM university WHERE university.Affiliation != 'Public' ORDER BY university.Founded Desc LIMIT 1",
+        "db_id": "university_basketball"
+    },
+    {
+        "sql": "SELECT university.Founded FROM university WHERE university.Affiliation != 'Public' ORDER BY university.Founded Desc LIMIT 1",
+        "db_id": "university_basketball"
+    },
+    {
+        "sql": "SELECT Count(*) FROM university WHERE university.School_ID NOT IN (SELECT basketball_match.School_ID FROM basketball_match)",
+        "db_id": "university_basketball"
+    },
+    {
+        "sql": "SELECT phone.Company_name, Count(*) FROM phone GROUP BY phone.Company_name ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "phone_1"
+    },
+    {
+        "sql": "SELECT Avg(chip_model.RAM_MiB) FROM chip_model WHERE chip_model.Model_name NOT IN (SELECT phone.chip_model FROM phone)",
+        "db_id": "phone_1"
+    },
+    {
+        "sql": "SELECT match_season.Position FROM match_season GROUP BY match_season.Position ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "match_season"
+    },
+    {
+        "sql": "SELECT match_season.College FROM match_season GROUP BY match_season.College ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "match_season"
+    },
+    {
+        "sql": "SELECT match_season.College FROM match_season GROUP BY match_season.College ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "match_season"
+    },
+    {
+        "sql": "SELECT team.Name FROM team WHERE team.Team_id NOT IN (SELECT match_season.Team FROM match_season)",
+        "db_id": "match_season"
+    },
+    {
+        "sql": "SELECT team.Name FROM team WHERE team.Team_id NOT IN (SELECT match_season.Team FROM match_season)",
+        "db_id": "match_season"
+    },
+    {
+        "sql": "SELECT mountain.Name FROM mountain WHERE mountain.Mountain_ID NOT IN (SELECT climber.Mountain_ID FROM climber)",
+        "db_id": "climbing"
+    },
+    {
+        "sql": "SELECT mountain.Name FROM mountain WHERE mountain.Mountain_ID NOT IN (SELECT climber.Mountain_ID FROM climber)",
+        "db_id": "climbing"
+    },
+    {
+        "sql": "SELECT mountain.Range FROM mountain GROUP BY mountain.Range ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "climbing"
+    },
+    {
+        "sql": "SELECT mountain.Range FROM mountain GROUP BY mountain.Range ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "climbing"
+    },
+    {
+        "sql": "SELECT people.Birth_Place FROM people GROUP BY people.Birth_Place ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "body_builder"
+    },
+    {
+        "sql": "SELECT people.Name, people.Birth_Place FROM people WHERE people.People_ID NOT IN (SELECT body_builder.People_ID FROM body_builder)",
+        "db_id": "body_builder"
+    },
+    {
+        "sql": "SELECT Count(*) FROM people WHERE people.People_ID NOT IN (SELECT body_builder.People_ID FROM body_builder)",
+        "db_id": "body_builder"
+    },
+    {
+        "sql": "SELECT representative.Name FROM representative WHERE representative.Representative_ID NOT IN (SELECT election.Representative_ID FROM election)",
+        "db_id": "election_representative"
+    },
+    {
+        "sql": "SELECT Apartments.apt_type_code, Count(*) FROM Apartments GROUP BY Apartments.apt_type_code ORDER BY Count(*) Asc",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Apartments.apt_type_code, Count(*) FROM Apartments GROUP BY Apartments.apt_type_code ORDER BY Count(*) Asc",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Apartments.apt_type_code FROM Apartments GROUP BY Apartments.apt_type_code ORDER BY Avg(Apartments.room_count) Desc",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Apartments.apt_type_code FROM Apartments GROUP BY Apartments.apt_type_code ORDER BY Avg(Apartments.room_count) Desc LIMIT 1",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Apartments.apt_type_code, Apartments.bathroom_count, Apartments.bedroom_count FROM Apartments GROUP BY Apartments.apt_type_code ORDER BY Sum(Apartments.room_count) Desc LIMIT 1",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Apartments.apt_type_code FROM Apartments GROUP BY Apartments.apt_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Apartments.apt_type_code FROM Apartments GROUP BY Apartments.apt_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Guests.gender_code, Count(*) FROM Guests GROUP BY Guests.gender_code ORDER BY Count(*) Desc",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Guests.gender_code, Count(*) FROM Guests GROUP BY Guests.gender_code ORDER BY Count(*) Desc",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Apartments WHERE Apartments.apt_id NOT IN (SELECT Apartment_Facilities.apt_id FROM Apartment_Facilities)",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Apartments WHERE Apartments.apt_id NOT IN (SELECT Apartment_Facilities.apt_id FROM Apartment_Facilities)",
+        "db_id": "apartment_rentals"
+    },
+    {
+        "sql": "SELECT Count(*) FROM game WHERE game.id NOT IN (SELECT injury_accident.game_id FROM injury_accident)",
+        "db_id": "game_injury"
+    },
+    {
+        "sql": "SELECT performance.Location FROM performance GROUP BY performance.Location ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "performance_attendance"
+    },
+    {
+        "sql": "SELECT performance.Location FROM performance WHERE performance.Attendance > 'terminal' INTERSECT SELECT performance.Location FROM performance WHERE performance.Attendance < 'terminal'",
+        "db_id": "performance_attendance"
+    },
+    {
+        "sql": "SELECT member.Name FROM member WHERE member.Member_ID NOT IN (SELECT member_attendance.Member_ID FROM member_attendance)",
+        "db_id": "performance_attendance"
+    },
+    {
+        "sql": "SELECT department.dept_name, department.building FROM department WHERE department.budget > (SELECT Avg(department.budget) FROM department)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT department.dept_name, department.building FROM department WHERE department.budget > (SELECT Avg(department.budget) FROM department)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT Count(*) FROM course WHERE course.course_id NOT IN (SELECT prereq.course_id FROM prereq)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT Count(*) FROM course WHERE course.course_id NOT IN (SELECT prereq.course_id FROM prereq)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT course.title FROM course WHERE course.course_id NOT IN (SELECT prereq.course_id FROM prereq)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT course.title FROM course WHERE course.course_id NOT IN (SELECT prereq.course_id FROM prereq)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT department.dept_name, department.budget FROM department WHERE department.budget > (SELECT Avg(department.budget) FROM department)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT department.dept_name, department.budget FROM department WHERE department.budget > (SELECT Avg(department.budget) FROM department)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT course.dept_name FROM course GROUP BY course.dept_name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT course.dept_name FROM course GROUP BY course.dept_name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT section.semester, section.year FROM section GROUP BY section.semester, section.year ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT section.semester, section.year FROM section GROUP BY section.semester, section.year ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT student.dept_name FROM student GROUP BY student.dept_name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT takes.semester, takes.year FROM takes GROUP BY takes.semester, takes.year ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT course.course_id FROM course EXCEPT SELECT prereq.course_id FROM prereq",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT course.course_id FROM course WHERE course.course_id NOT IN (SELECT prereq.course_id FROM prereq)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT course.title FROM course WHERE course.course_id NOT IN (SELECT prereq.course_id FROM prereq)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT course.title FROM course WHERE course.course_id NOT IN (SELECT prereq.course_id FROM prereq)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT instructor.name FROM instructor WHERE instructor.ID NOT IN (SELECT teaches.ID FROM teaches)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT instructor.name FROM instructor WHERE instructor.ID NOT IN (SELECT teaches.ID FROM teaches)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT instructor.ID FROM instructor WHERE instructor.ID NOT IN (SELECT teaches.ID FROM teaches)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT instructor.ID FROM instructor WHERE instructor.ID NOT IN (SELECT teaches.ID FROM teaches)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT instructor.dept_name FROM instructor GROUP BY instructor.dept_name ORDER BY Avg(instructor.salary) Desc LIMIT 1",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT instructor.dept_name FROM instructor GROUP BY instructor.dept_name ORDER BY Avg(instructor.salary) Desc LIMIT 1",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT instructor.salary FROM instructor WHERE instructor.salary < (SELECT Max(instructor.salary) FROM instructor)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT DISTINCT instructor.salary FROM instructor WHERE instructor.salary < (SELECT Max(instructor.salary) FROM instructor)",
+        "db_id": "college_2"
+    },
+    {
+        "sql": "SELECT people.Party FROM people ORDER BY people.Party Desc LIMIT 1",
+        "db_id": "debate"
+    },
+    {
+        "sql": "SELECT people.Name FROM people WHERE people.People_ID NOT IN (SELECT debate_people.Affirmative FROM debate_people)",
+        "db_id": "debate"
+    },
+    {
+        "sql": "SELECT Policies.Policy_Type_Code FROM Policies GROUP BY Policies.Policy_Type_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "insurance_and_eClaims"
+    },
+    {
+        "sql": "SELECT Policies.Policy_Type_Code FROM Policies GROUP BY Policies.Policy_Type_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "insurance_and_eClaims"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Customers WHERE Customers.customer_id NOT IN (SELECT Accounts.customer_id FROM Accounts)",
+        "db_id": "customers_and_invoices"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Customers WHERE Customers.customer_id NOT IN (SELECT Accounts.customer_id FROM Accounts)",
+        "db_id": "customers_and_invoices"
+    },
+    {
+        "sql": "SELECT Customers.customer_id FROM Customers WHERE Customers.customer_id NOT IN (SELECT Accounts.customer_id FROM Accounts)",
+        "db_id": "customers_and_invoices"
+    },
+    {
+        "sql": "SELECT Financial_Transactions.transaction_id FROM Financial_Transactions WHERE Financial_Transactions.transaction_amount > (SELECT Avg(Financial_Transactions.transaction_amount) FROM Financial_Transactions)",
+        "db_id": "customers_and_invoices"
+    },
+    {
+        "sql": "SELECT Financial_Transactions.transaction_id FROM Financial_Transactions WHERE Financial_Transactions.transaction_amount > (SELECT Avg(Financial_Transactions.transaction_amount) FROM Financial_Transactions)",
+        "db_id": "customers_and_invoices"
+    },
+    {
+        "sql": "SELECT Financial_Transactions.account_id FROM Financial_Transactions GROUP BY Financial_Transactions.account_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customers_and_invoices"
+    },
+    {
+        "sql": "SELECT Financial_Transactions.account_id FROM Financial_Transactions GROUP BY Financial_Transactions.account_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customers_and_invoices"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Products WHERE Products.product_id NOT IN (SELECT Order_Items.product_id FROM Order_Items)",
+        "db_id": "customers_and_invoices"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Products WHERE Products.product_id NOT IN (SELECT Order_Items.product_id FROM Order_Items)",
+        "db_id": "customers_and_invoices"
+    },
+    {
+        "sql": "SELECT people.Country FROM people WHERE people.Age > '30' INTERSECT SELECT people.Country FROM people WHERE people.Age < '25'",
+        "db_id": "wedding"
+    },
+    {
+        "sql": "SELECT people.Name, people.Country FROM people WHERE people.Age < (SELECT Avg(people.Age) FROM people)",
+        "db_id": "wedding"
+    },
+    {
+        "sql": "SELECT artist.Name FROM artist WHERE artist.Artist_ID NOT IN (SELECT exhibition.Artist_ID FROM exhibition)",
+        "db_id": "theme_gallery"
+    },
+    {
+        "sql": "SELECT artist.Name FROM artist WHERE artist.Artist_ID NOT IN (SELECT exhibition.Artist_ID FROM exhibition)",
+        "db_id": "theme_gallery"
+    },
+    {
+        "sql": "SELECT Count(*) FROM exhibition_record WHERE exhibition_record.Attendance > 'terminal' OR exhibition_record.Attendance < 'terminal'",
+        "db_id": "theme_gallery"
+    },
+    {
+        "sql": "SELECT Count(*) FROM item WHERE item.i_id NOT IN (SELECT review.i_id FROM review)",
+        "db_id": "epinions_1"
+    },
+    {
+        "sql": "SELECT useracct.name FROM useracct WHERE useracct.u_id NOT IN (SELECT review.u_id FROM review)",
+        "db_id": "epinions_1"
+    },
+    {
+        "sql": "SELECT item.title FROM item WHERE item.i_id NOT IN (SELECT review.i_id FROM review)",
+        "db_id": "epinions_1"
+    },
+    {
+        "sql": "SELECT useracct.name FROM useracct WHERE useracct.u_id NOT IN (SELECT review.u_id FROM review)",
+        "db_id": "epinions_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM item WHERE item.i_id NOT IN (SELECT review.i_id FROM review)",
+        "db_id": "epinions_1"
+    },
+    {
+        "sql": "SELECT player.Occupation FROM player GROUP BY player.Occupation ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "riding_club"
+    },
+    {
+        "sql": "SELECT player.Player_name FROM player WHERE player.Player_ID NOT IN (SELECT player_coach.Player_ID FROM player_coach)",
+        "db_id": "riding_club"
+    },
+    {
+        "sql": "SELECT people.Hometown FROM people GROUP BY people.Hometown ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "gymnast"
+    },
+    {
+        "sql": "SELECT Count(*) FROM SAVINGS WHERE SAVINGS.balance > (SELECT Avg(SAVINGS.balance) FROM SAVINGS)",
+        "db_id": "small_bank_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM SAVINGS WHERE SAVINGS.balance > (SELECT Avg(SAVINGS.balance) FROM SAVINGS)",
+        "db_id": "small_bank_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Web_client_accelerator WHERE Web_client_accelerator.id NOT IN (SELECT accelerator_compatible_browser.accelerator_id FROM accelerator_compatible_browser)",
+        "db_id": "browser_web"
+    },
+    {
+        "sql": "SELECT wrestler.Reign FROM wrestler GROUP BY wrestler.Reign ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "wrestler"
+    },
+    {
+        "sql": "SELECT wrestler.Reign FROM wrestler GROUP BY wrestler.Reign ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "wrestler"
+    },
+    {
+        "sql": "SELECT wrestler.Name FROM wrestler WHERE wrestler.Wrestler_ID NOT IN (SELECT Elimination.Wrestler_ID FROM Elimination)",
+        "db_id": "wrestler"
+    },
+    {
+        "sql": "SELECT wrestler.Name FROM wrestler WHERE wrestler.Wrestler_ID NOT IN (SELECT Elimination.Wrestler_ID FROM Elimination)",
+        "db_id": "wrestler"
+    },
+    {
+        "sql": "SELECT School.Mascot FROM School WHERE School.Enrollment > (SELECT Avg(School.Enrollment) FROM School)",
+        "db_id": "school_finance"
+    },
+    {
+        "sql": "SELECT endowment.donator_name, Sum(endowment.amount) FROM endowment GROUP BY endowment.donator_name ORDER BY Sum(endowment.amount) Desc",
+        "db_id": "school_finance"
+    },
+    {
+        "sql": "SELECT School.School_name FROM School WHERE School.School_id NOT IN (SELECT endowment.School_id FROM endowment)",
+        "db_id": "school_finance"
+    },
+    {
+        "sql": "SELECT Count(*) FROM building WHERE building.Height_feet > (SELECT Avg(building.Height_feet) FROM building) OR building.Floors > (SELECT Avg(building.Floors) FROM building)",
+        "db_id": "protein_institute"
+    },
+    {
+        "sql": "SELECT Institution.Type FROM Institution GROUP BY Institution.Type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "protein_institute"
+    },
+    {
+        "sql": "SELECT building.Name FROM building WHERE building.building_id NOT IN (SELECT Institution.building_id FROM Institution)",
+        "db_id": "protein_institute"
+    },
+    {
+        "sql": "SELECT cinema.Location FROM cinema WHERE cinema.Openning_year = '2010' INTERSECT SELECT cinema.Location FROM cinema WHERE cinema.Openning_year = '2011'",
+        "db_id": "cinema"
+    },
+    {
+        "sql": "SELECT cinema.Name, cinema.Location FROM cinema WHERE cinema.Capacity > (SELECT Avg(cinema.Capacity) FROM cinema)",
+        "db_id": "cinema"
+    },
+    {
+        "sql": "SELECT cinema.Location FROM cinema WHERE cinema.Openning_year >= '2010' GROUP BY cinema.Location ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cinema"
+    },
+    {
+        "sql": "SELECT film.Title, film.Directed_by FROM film WHERE film.Film_ID NOT IN (SELECT schedule.Film_ID FROM schedule)",
+        "db_id": "cinema"
+    },
+    {
+        "sql": "SELECT phone.Carrier FROM phone GROUP BY phone.Carrier ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "phone_market"
+    },
+    {
+        "sql": "SELECT phone.Carrier FROM phone WHERE phone.Memory_in_G < '32' INTERSECT SELECT phone.Carrier FROM phone WHERE phone.Memory_in_G < '64'",
+        "db_id": "phone_market"
+    },
+    {
+        "sql": "SELECT phone.Name FROM phone WHERE phone.Phone_ID NOT IN (SELECT phone_market.Phone_ID FROM phone_market)",
+        "db_id": "phone_market"
+    },
+    {
+        "sql": "SELECT company.Main_Industry, Count(*) FROM company GROUP BY company.Main_Industry ORDER BY Sum(company.Market_Value) Desc LIMIT 1",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT company.Main_Industry, Count(*) FROM company GROUP BY company.Main_Industry ORDER BY Sum(company.Market_Value) Desc LIMIT 1",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT gas_station.Location, Count(*) FROM gas_station GROUP BY gas_station.Location ORDER BY Count(*) Asc",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT gas_station.Location, Count(*) FROM gas_station GROUP BY gas_station.Location ORDER BY Count(*) Asc",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT company.Headquarters FROM company WHERE company.Main_Industry = 'Oil and gas' INTERSECT SELECT company.Headquarters FROM company WHERE company.Main_Industry = 'Banking'",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT company.Headquarters FROM company WHERE company.Main_Industry = 'Oil and gas' INTERSECT SELECT company.Headquarters FROM company WHERE company.Main_Industry = 'Banking'",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT company.Headquarters FROM company EXCEPT SELECT company.Headquarters FROM company WHERE company.Main_Industry = 'Banking'",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT company.Headquarters FROM company EXCEPT SELECT company.Headquarters FROM company WHERE company.Main_Industry = 'Banking'",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT company.Company, company.Main_Industry FROM company WHERE company.Company_ID NOT IN (SELECT station_company.Company_ID FROM station_company)",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT gas_station.Manager_Name FROM gas_station WHERE gas_station.Open_Year > '2000' GROUP BY gas_station.Manager_Name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT gas_station.Manager_Name FROM gas_station WHERE gas_station.Open_Year > '2000' GROUP BY gas_station.Manager_Name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "gas_company"
+    },
+    {
+        "sql": "SELECT party.Party_name FROM party WHERE party.Party_ID NOT IN (SELECT member.Party_ID FROM member)",
+        "db_id": "party_people"
+    },
+    {
+        "sql": "SELECT party.Party_name FROM party WHERE party.Party_ID NOT IN (SELECT member.Party_ID FROM member)",
+        "db_id": "party_people"
+    },
+    {
+        "sql": "SELECT pilot.Nationality FROM pilot GROUP BY pilot.Nationality ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "pilot_record"
+    },
+    {
+        "sql": "SELECT pilot.Position FROM pilot WHERE pilot.Join_Year < 'terminal' INTERSECT SELECT pilot.Position FROM pilot WHERE pilot.Join_Year > 'terminal'",
+        "db_id": "pilot_record"
+    },
+    {
+        "sql": "SELECT pilot.Pilot_name FROM pilot WHERE pilot.Pilot_ID NOT IN (SELECT pilot_record.Pilot_ID FROM pilot_record)",
+        "db_id": "pilot_record"
+    },
+    {
+        "sql": "SELECT Draft_Copies.document_id, Count(Draft_Copies.copy_number) FROM Draft_Copies GROUP BY Draft_Copies.document_id ORDER BY Count(Draft_Copies.copy_number) Desc LIMIT 1",
+        "db_id": "cre_Doc_Control_Systems"
+    },
+    {
+        "sql": "SELECT Employees.employee_name, Count(*) FROM Employees GROUP BY Employees.employee_name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Doc_Control_Systems"
+    },
+    {
+        "sql": "SELECT Participants.Participant_Type_Code FROM Participants GROUP BY Participants.Participant_Type_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "local_govt_in_alabama"
+    },
+    {
+        "sql": "SELECT Participants_in_Events.Event_ID FROM Participants_in_Events GROUP BY Participants_in_Events.Event_ID ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "local_govt_in_alabama"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Events WHERE Events.Event_ID NOT IN (SELECT Participants_in_Events.Event_ID FROM Participants_in_Events)",
+        "db_id": "local_govt_in_alabama"
+    },
+    {
+        "sql": "SELECT DISTINCT pitStops.driverId, pitStops.stop FROM pitStops WHERE pitStops.milliseconds < (SELECT Min(pitStops.milliseconds) FROM pitStops WHERE pitStops.raceId = 'terminal')",
+        "db_id": "formula_1"
+    },
+    {
+        "sql": "SELECT circuits.circuitId, circuits.location FROM circuits WHERE circuits.country = 'France' OR circuits.country = 'Belgium'",
+        "db_id": "formula_1"
+    },
+    {
+        "sql": "SELECT circuits.circuitId, circuits.location FROM circuits WHERE circuits.country = 'France' OR circuits.country = 'Belgium'",
+        "db_id": "formula_1"
+    },
+    {
+        "sql": "SELECT technician.Team FROM technician GROUP BY technician.Team ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "machine_repair"
+    },
+    {
+        "sql": "SELECT technician.Team FROM technician GROUP BY technician.Team ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "machine_repair"
+    },
+    {
+        "sql": "SELECT technician.Name FROM technician WHERE technician.technician_id NOT IN (SELECT repair_assignment.technician_id FROM repair_assignment)",
+        "db_id": "machine_repair"
+    },
+    {
+        "sql": "SELECT technician.Name FROM technician WHERE technician.technician_id NOT IN (SELECT repair_assignment.technician_id FROM repair_assignment)",
+        "db_id": "machine_repair"
+    },
+    {
+        "sql": "SELECT people.Name FROM people ORDER BY people.Weight Desc LIMIT 1",
+        "db_id": "entrepreneur"
+    },
+    {
+        "sql": "SELECT people.Name FROM people ORDER BY people.Weight Desc LIMIT 1",
+        "db_id": "entrepreneur"
+    },
+    {
+        "sql": "SELECT entrepreneur.Investor FROM entrepreneur GROUP BY entrepreneur.Investor ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "entrepreneur"
+    },
+    {
+        "sql": "SELECT entrepreneur.Investor FROM entrepreneur GROUP BY entrepreneur.Investor ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "entrepreneur"
+    },
+    {
+        "sql": "SELECT people.Name FROM people WHERE people.People_ID NOT IN (SELECT entrepreneur.People_ID FROM entrepreneur)",
+        "db_id": "entrepreneur"
+    },
+    {
+        "sql": "SELECT people.Name FROM people WHERE people.People_ID NOT IN (SELECT entrepreneur.People_ID FROM entrepreneur)",
+        "db_id": "entrepreneur"
+    },
+    {
+        "sql": "SELECT people.Name FROM people ORDER BY people.Weight Desc LIMIT 1",
+        "db_id": "perpetrator"
+    },
+    {
+        "sql": "SELECT people.Name FROM people WHERE people.People_ID NOT IN (SELECT perpetrator.People_ID FROM perpetrator)",
+        "db_id": "perpetrator"
+    },
+    {
+        "sql": "SELECT perpetrator.Country FROM perpetrator WHERE perpetrator.Injured > '0' INTERSECT SELECT perpetrator.Country FROM perpetrator WHERE perpetrator.Injured < '0'",
+        "db_id": "perpetrator"
+    },
+    {
+        "sql": "SELECT Count(*) FROM csu_fees WHERE csu_fees.CampusFee > (SELECT Avg(csu_fees.CampusFee) FROM csu_fees)",
+        "db_id": "csu_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM csu_fees WHERE csu_fees.CampusFee > (SELECT Avg(csu_fees.CampusFee) FROM csu_fees)",
+        "db_id": "csu_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM csu_fees WHERE csu_fees.CampusFee > (SELECT Avg(csu_fees.CampusFee) FROM csu_fees)",
+        "db_id": "csu_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM csu_fees WHERE csu_fees.CampusFee > (SELECT Avg(csu_fees.CampusFee) FROM csu_fees)",
+        "db_id": "csu_1"
+    },
+    {
+        "sql": "SELECT degrees.Year FROM degrees ORDER BY degrees.Degrees Desc LIMIT 1",
+        "db_id": "csu_1"
+    },
+    {
+        "sql": "SELECT degrees.Year FROM degrees ORDER BY degrees.Degrees Desc LIMIT 1",
+        "db_id": "csu_1"
+    },
+    {
+        "sql": "SELECT candidate.Poll_Source FROM candidate GROUP BY candidate.Poll_Source ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "candidate_poll"
+    },
+    {
+        "sql": "SELECT candidate.Poll_Source FROM candidate GROUP BY candidate.Poll_Source ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "candidate_poll"
+    },
+    {
+        "sql": "SELECT people.Name FROM people WHERE people.People_ID NOT IN (SELECT candidate.People_ID FROM candidate)",
+        "db_id": "candidate_poll"
+    },
+    {
+        "sql": "SELECT people.Name FROM people WHERE people.People_ID NOT IN (SELECT candidate.People_ID FROM candidate)",
+        "db_id": "candidate_poll"
+    },
+    {
+        "sql": "SELECT people.Name FROM people WHERE people.Height < (SELECT Avg(people.Height) FROM people)",
+        "db_id": "candidate_poll"
+    },
+    {
+        "sql": "SELECT people.Name FROM people WHERE people.Height < (SELECT Avg(people.Height) FROM people)",
+        "db_id": "candidate_poll"
+    },
+    {
+        "sql": "SELECT Movie.title FROM Movie WHERE Movie.mID NOT IN (SELECT Rating.mID FROM Rating)",
+        "db_id": "movie_1"
+    },
+    {
+        "sql": "SELECT Movie.title FROM Movie WHERE Movie.mID NOT IN (SELECT Rating.mID FROM Rating)",
+        "db_id": "movie_1"
+    },
+    {
+        "sql": "SELECT Movie.title FROM Movie ORDER BY Movie.year Desc LIMIT 1",
+        "db_id": "movie_1"
+    },
+    {
+        "sql": "SELECT Movie.title FROM Movie ORDER BY Movie.year Desc LIMIT 1",
+        "db_id": "movie_1"
+    },
+    {
+        "sql": "SELECT Movie.title FROM Movie WHERE Movie.year > (SELECT Max(Movie.year) FROM Movie WHERE Movie.director = 'Steven Spielberg' ORDER BY Movie.year Desc LIMIT 1)",
+        "db_id": "movie_1"
+    },
+    {
+        "sql": "SELECT Rating.rID FROM Rating EXCEPT SELECT Rating.rID FROM Rating WHERE Rating.stars = '4'",
+        "db_id": "movie_1"
+    },
+    {
+        "sql": "SELECT Rating.rID FROM Rating EXCEPT SELECT Rating.rID FROM Rating WHERE Rating.stars = '4'",
+        "db_id": "movie_1"
+    },
+    {
+        "sql": "SELECT city.Name FROM city WHERE city.County_ID = (SELECT county_public_safety.County_ID FROM county_public_safety ORDER BY county_public_safety.Police_officers Desc LIMIT 1)",
+        "db_id": "county_public_safety"
+    },
+    {
+        "sql": "SELECT city.Name FROM city WHERE city.County_ID = (SELECT county_public_safety.County_ID FROM county_public_safety ORDER BY county_public_safety.Police_officers Desc LIMIT 1)",
+        "db_id": "county_public_safety"
+    },
+    {
+        "sql": "SELECT county_public_safety.Location FROM county_public_safety GROUP BY county_public_safety.Location ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "county_public_safety"
+    },
+    {
+        "sql": "SELECT county_public_safety.Name FROM county_public_safety WHERE county_public_safety.County_ID NOT IN (SELECT city.County_ID FROM city)",
+        "db_id": "county_public_safety"
+    },
+    {
+        "sql": "SELECT county_public_safety.Name FROM county_public_safety WHERE county_public_safety.County_ID NOT IN (SELECT city.County_ID FROM city)",
+        "db_id": "county_public_safety"
+    },
+    {
+        "sql": "SELECT county_public_safety.Police_force FROM county_public_safety WHERE county_public_safety.Location = 'East' INTERSECT SELECT county_public_safety.Police_force FROM county_public_safety WHERE county_public_safety.Location = 'West'",
+        "db_id": "county_public_safety"
+    },
+    {
+        "sql": "SELECT Rooms.decor FROM Rooms GROUP BY Rooms.decor ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "inn_1"
+    },
+    {
+        "sql": "SELECT Rooms.decor FROM Rooms GROUP BY Rooms.decor ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "inn_1"
+    },
+    {
+        "sql": "SELECT Rooms.roomName FROM Rooms WHERE Rooms.basePrice > (SELECT Avg(Rooms.basePrice) FROM Rooms)",
+        "db_id": "inn_1"
+    },
+    {
+        "sql": "SELECT Rooms.roomName FROM Rooms WHERE Rooms.basePrice > (SELECT Avg(Rooms.basePrice) FROM Rooms)",
+        "db_id": "inn_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Rooms WHERE Rooms.RoomId NOT IN (SELECT Reservations.Room FROM Reservations)",
+        "db_id": "inn_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Rooms WHERE Rooms.RoomId NOT IN (SELECT DISTINCT Reservations.Room FROM Reservations)",
+        "db_id": "inn_1"
+    },
+    {
+        "sql": "SELECT CMI_Cross_References.cmi_cross_ref_id FROM CMI_Cross_References WHERE CMI_Cross_References.cmi_cross_ref_id NOT IN (SELECT Parking_Fines.cmi_cross_ref_id FROM Parking_Fines)",
+        "db_id": "local_govt_mdm"
+    },
+    {
+        "sql": "SELECT party.First_year, party.Last_year FROM party WHERE party.Party_Theme = 'Spring' OR party.Party_Theme = 'Teqnology'",
+        "db_id": "party_host"
+    },
+    {
+        "sql": "SELECT party.First_year, party.Last_year FROM party WHERE party.Party_Theme = 'Spring' OR party.Party_Theme = 'Teqnology'",
+        "db_id": "party_host"
+    },
+    {
+        "sql": "SELECT host.Nationality FROM host GROUP BY host.Nationality ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "party_host"
+    },
+    {
+        "sql": "SELECT host.Nationality FROM host WHERE host.Age > '45' INTERSECT SELECT host.Nationality FROM host WHERE host.Age < '45'",
+        "db_id": "party_host"
+    },
+    {
+        "sql": "SELECT host.Nationality FROM host WHERE host.Age > '45' INTERSECT SELECT host.Nationality FROM host WHERE host.Age < '45'",
+        "db_id": "party_host"
+    },
+    {
+        "sql": "SELECT host.Name FROM host WHERE host.Host_ID NOT IN (SELECT party_host.Host_ID FROM party_host)",
+        "db_id": "party_host"
+    },
+    {
+        "sql": "SELECT host.Name FROM host WHERE host.Host_ID NOT IN (SELECT party_host.Host_ID FROM party_host)",
+        "db_id": "party_host"
+    },
+    {
+        "sql": "SELECT Sum(storm.Number_Deaths), Sum(storm.Damage_millions_USD) FROM storm WHERE storm.Max_speed > (SELECT Avg(storm.Max_speed) FROM storm)",
+        "db_id": "storm_record"
+    },
+    {
+        "sql": "SELECT Sum(storm.Number_Deaths), Sum(storm.Damage_millions_USD) FROM storm WHERE storm.Max_speed > (SELECT Avg(storm.Max_speed) FROM storm)",
+        "db_id": "storm_record"
+    },
+    {
+        "sql": "SELECT region.Region_name FROM region WHERE region.Region_id NOT IN (SELECT affected_region.Region_id FROM affected_region)",
+        "db_id": "storm_record"
+    },
+    {
+        "sql": "SELECT region.Region_name FROM region WHERE region.Region_id NOT IN (SELECT affected_region.Region_id FROM affected_region)",
+        "db_id": "storm_record"
+    },
+    {
+        "sql": "SELECT storm.Name FROM storm WHERE storm.Storm_ID NOT IN (SELECT affected_region.Storm_ID FROM affected_region)",
+        "db_id": "storm_record"
+    },
+    {
+        "sql": "SELECT storm.Name FROM storm WHERE storm.Storm_ID NOT IN (SELECT affected_region.Storm_ID FROM affected_region)",
+        "db_id": "storm_record"
+    },
+    {
+        "sql": "SELECT party.Governor FROM party GROUP BY party.Governor ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "election"
+    },
+    {
+        "sql": "SELECT party.Governor FROM party GROUP BY party.Governor ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "election"
+    },
+    {
+        "sql": "SELECT party.Comptroller, Count(*) FROM party GROUP BY party.Comptroller ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "election"
+    },
+    {
+        "sql": "SELECT party.Comptroller, Count(*) FROM party GROUP BY party.Comptroller ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "election"
+    },
+    {
+        "sql": "SELECT party.Party FROM party WHERE party.Party_ID NOT IN (SELECT election.Party FROM election)",
+        "db_id": "election"
+    },
+    {
+        "sql": "SELECT party.Party FROM party WHERE party.Party_ID NOT IN (SELECT election.Party FROM election)",
+        "db_id": "election"
+    },
+    {
+        "sql": "SELECT journalist.Nationality FROM journalist GROUP BY journalist.Nationality ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "news_report"
+    },
+    {
+        "sql": "SELECT journalist.Nationality FROM journalist WHERE journalist.Years_working > '10' INTERSECT SELECT journalist.Nationality FROM journalist WHERE journalist.Years_working < '3'",
+        "db_id": "news_report"
+    },
+    {
+        "sql": "SELECT journalist.Name FROM journalist WHERE journalist.journalist_ID NOT IN (SELECT news_report.journalist_ID FROM news_report)",
+        "db_id": "news_report"
+    },
+    {
+        "sql": "SELECT Student.Advisor, Count(*) FROM Student GROUP BY Student.Advisor ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "restaurant_1"
+    },
+    {
+        "sql": "SELECT Student.Major, Count(*) FROM Student GROUP BY Student.Major ORDER BY Count(Student.Major) Asc LIMIT 1",
+        "db_id": "restaurant_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Student WHERE Student.Fname = 'Linda' AND Student.LName = 'Smith'",
+        "db_id": "restaurant_1"
+    },
+    {
+        "sql": "SELECT Addresses.state_province_county FROM Addresses WHERE Addresses.address_id NOT IN (SELECT Employees.employee_address_id FROM Employees)",
+        "db_id": "customer_deliveries"
+    },
+    {
+        "sql": "SELECT Customers.payment_method FROM Customers GROUP BY Customers.payment_method ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customer_deliveries"
+    },
+    {
+        "sql": "SELECT Inst.country FROM Inst GROUP BY Inst.country ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "icfp_1"
+    },
+    {
+        "sql": "SELECT Inst.country FROM Inst GROUP BY Inst.country ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "icfp_1"
+    },
+    {
+        "sql": "SELECT actor.first_name FROM actor GROUP BY actor.first_name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "sakila_1"
+    },
+    {
+        "sql": "SELECT actor.first_name FROM actor GROUP BY actor.first_name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "sakila_1"
+    },
+    {
+        "sql": "SELECT actor.first_name, actor.last_name FROM actor GROUP BY actor.first_name, actor.last_name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "sakila_1"
+    },
+    {
+        "sql": "SELECT actor.first_name, actor.last_name FROM actor GROUP BY actor.first_name, actor.last_name ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "sakila_1"
+    },
+    {
+        "sql": "SELECT inventory.store_id FROM inventory GROUP BY inventory.store_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "sakila_1"
+    },
+    {
+        "sql": "SELECT customer.store_id FROM customer GROUP BY customer.store_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "sakila_1"
+    },
+    {
+        "sql": "SELECT customer.cust_name FROM customer WHERE customer.acc_type = 'terminal' INTERSECT SELECT customer.cust_name FROM customer WHERE customer.acc_type = 'terminal'",
+        "db_id": "loan_1"
+    },
+    {
+        "sql": "SELECT customer.cust_name FROM customer WHERE customer.acc_type = 'terminal' INTERSECT SELECT customer.cust_name FROM customer WHERE customer.acc_type = 'terminal'",
+        "db_id": "loan_1"
+    },
+    {
+        "sql": "SELECT customer.cust_name FROM customer EXCEPT SELECT customer.cust_name FROM customer WHERE customer.acc_type = 'terminal'",
+        "db_id": "loan_1"
+    },
+    {
+        "sql": "SELECT customer.cust_name FROM customer EXCEPT SELECT customer.cust_name FROM customer WHERE customer.acc_type = 'terminal'",
+        "db_id": "loan_1"
+    },
+    {
+        "sql": "SELECT customer.cust_name FROM customer WHERE customer.credit_score < (SELECT Avg(customer.credit_score) FROM customer)",
+        "db_id": "loan_1"
+    },
+    {
+        "sql": "SELECT customer.cust_name FROM customer WHERE customer.credit_score < (SELECT Avg(customer.credit_score) FROM customer)",
+        "db_id": "loan_1"
+    },
+    {
+        "sql": "SELECT bank.state FROM bank ORDER BY bank.no_of_customers Desc LIMIT 1",
+        "db_id": "loan_1"
+    },
+    {
+        "sql": "SELECT bank.state FROM bank GROUP BY bank.state ORDER BY Sum(bank.no_of_customers) Desc LIMIT 1",
+        "db_id": "loan_1"
+    },
+    {
+        "sql": "SELECT Avg(customer.credit_score) FROM customer WHERE customer.cust_ID NOT IN (SELECT loan.cust_ID FROM loan)",
+        "db_id": "loan_1"
+    },
+    {
+        "sql": "SELECT Avg(customer.credit_score) FROM customer WHERE customer.cust_ID NOT IN (SELECT loan.cust_ID FROM loan)",
+        "db_id": "loan_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Students WHERE Students.student_id NOT IN (SELECT Behavior_Incident.student_id FROM Behavior_Incident)",
+        "db_id": "behavior_monitoring"
+    },
+    {
+        "sql": "SELECT Maintenance_Engineers.engineer_id, Maintenance_Engineers.first_name, Maintenance_Engineers.last_name FROM Maintenance_Engineers GROUP BY Maintenance_Engineers.engineer_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "assets_maintenance"
+    },
+    {
+        "sql": "SELECT Maintenance_Engineers.first_name, Maintenance_Engineers.last_name FROM Maintenance_Engineers WHERE Maintenance_Engineers.engineer_id NOT IN (SELECT Engineer_Visits.engineer_id FROM Engineer_Visits)",
+        "db_id": "assets_maintenance"
+    },
+    {
+        "sql": "SELECT Parts.part_name FROM Parts GROUP BY Parts.part_name ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "assets_maintenance"
+    },
+    {
+        "sql": "SELECT Maintenance_Engineers.engineer_id, Maintenance_Engineers.first_name, Maintenance_Engineers.last_name FROM Maintenance_Engineers GROUP BY Maintenance_Engineers.engineer_id ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "assets_maintenance"
+    },
+    {
+        "sql": "SELECT Fault_Log.fault_log_entry_id, Fault_Log.fault_description, Fault_Log.fault_log_entry_datetime FROM Fault_Log GROUP BY Fault_Log.fault_log_entry_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "assets_maintenance"
+    },
+    {
+        "sql": "SELECT Staff.gender FROM Staff GROUP BY Staff.gender ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "assets_maintenance"
+    },
+    {
+        "sql": "SELECT Assets.asset_model FROM Assets WHERE Assets.asset_id NOT IN (SELECT Fault_Log.asset_id FROM Fault_Log)",
+        "db_id": "assets_maintenance"
+    },
+    {
+        "sql": "SELECT EMPLOYEE.EMP_JOBCODE, Count(*) FROM EMPLOYEE GROUP BY EMPLOYEE.EMP_JOBCODE ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "college_1"
+    },
+    {
+        "sql": "SELECT EMPLOYEE.EMP_JOBCODE, Count(*) FROM EMPLOYEE GROUP BY EMPLOYEE.EMP_JOBCODE ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "college_1"
+    },
+    {
+        "sql": "SELECT DEPARTMENT.SCHOOL_CODE FROM DEPARTMENT GROUP BY DEPARTMENT.SCHOOL_CODE ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "college_1"
+    },
+    {
+        "sql": "SELECT DEPARTMENT.SCHOOL_CODE FROM DEPARTMENT GROUP BY DEPARTMENT.SCHOOL_CODE ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "college_1"
+    },
+    {
+        "sql": "SELECT STUDENT.STU_FNAME, STUDENT.STU_GPA FROM STUDENT WHERE STUDENT.STU_GPA < (SELECT Avg(STUDENT.STU_GPA) FROM STUDENT)",
+        "db_id": "college_1"
+    },
+    {
+        "sql": "SELECT STUDENT.STU_FNAME, STUDENT.STU_GPA FROM STUDENT WHERE STUDENT.STU_GPA < (SELECT Avg(STUDENT.STU_GPA) FROM STUDENT)",
+        "db_id": "college_1"
+    },
+    {
+        "sql": "SELECT competition.Competition_type FROM competition GROUP BY competition.Competition_type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "sports_competition"
+    },
+    {
+        "sql": "SELECT competition.Competition_type FROM competition GROUP BY competition.Competition_type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "sports_competition"
+    },
+    {
+        "sql": "SELECT club.name FROM club WHERE club.Club_ID NOT IN (SELECT player.Club_ID FROM player)",
+        "db_id": "sports_competition"
+    },
+    {
+        "sql": "SELECT club.name FROM club WHERE club.Club_ID NOT IN (SELECT player.Club_ID FROM player)",
+        "db_id": "sports_competition"
+    },
+    {
+        "sql": "SELECT player.name FROM player WHERE player.Points > (SELECT Avg(player.Points) FROM player)",
+        "db_id": "sports_competition"
+    },
+    {
+        "sql": "SELECT player.name FROM player WHERE player.Points > (SELECT Avg(player.Points) FROM player)",
+        "db_id": "sports_competition"
+    },
+    {
+        "sql": "SELECT employees.FIRST_NAME, employees.LAST_NAME, employees.DEPARTMENT_ID FROM employees WHERE employees.SALARY IN (SELECT Min(employees.SALARY) FROM employees GROUP BY employees.DEPARTMENT_ID)",
+        "db_id": "hr_1"
+    },
+    {
+        "sql": "SELECT employees.EMPLOYEE_ID FROM employees WHERE employees.SALARY > (SELECT Avg(employees.SALARY) FROM employees)",
+        "db_id": "hr_1"
+    },
+    {
+        "sql": "SELECT employees.EMPLOYEE_ID FROM employees WHERE employees.SALARY > (SELECT Avg(employees.SALARY) FROM employees)",
+        "db_id": "hr_1"
+    },
+    {
+        "sql": "SELECT * FROM employees WHERE employees.EMPLOYEE_ID NOT IN (SELECT job_history.EMPLOYEE_ID FROM job_history)",
+        "db_id": "hr_1"
+    },
+    {
+        "sql": "SELECT * FROM employees WHERE employees.EMPLOYEE_ID NOT IN (SELECT job_history.EMPLOYEE_ID FROM job_history)",
+        "db_id": "hr_1"
+    },
+    {
+        "sql": "SELECT files.artist_name FROM files ORDER BY files.duration Asc LIMIT 1",
+        "db_id": "music_1"
+    },
+    {
+        "sql": "SELECT files.artist_name FROM files ORDER BY files.duration Asc LIMIT 1",
+        "db_id": "music_1"
+    },
+    {
+        "sql": "SELECT files.formats FROM files GROUP BY files.formats ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_1"
+    },
+    {
+        "sql": "SELECT files.formats FROM files GROUP BY files.formats ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_1"
+    },
+    {
+        "sql": "SELECT song.languages FROM song GROUP BY song.languages ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_1"
+    },
+    {
+        "sql": "SELECT song.languages FROM song GROUP BY song.languages ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM camera_lens WHERE camera_lens.id NOT IN (SELECT photos.camera_lens_id FROM photos)",
+        "db_id": "mountain_photos"
+    },
+    {
+        "sql": "SELECT Student_Tests_Taken.test_result, Count(*) FROM Student_Tests_Taken GROUP BY Student_Tests_Taken.test_result ORDER BY Count(*) Desc",
+        "db_id": "e_learning"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Students WHERE Students.student_id NOT IN (SELECT Student_Course_Enrolment.student_id FROM Student_Course_Enrolment)",
+        "db_id": "e_learning"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Students WHERE Students.student_id NOT IN (SELECT Student_Course_Enrolment.student_id FROM Student_Course_Enrolment)",
+        "db_id": "e_learning"
+    },
+    {
+        "sql": "SELECT Course_Authors_and_Tutors.login_name FROM Course_Authors_and_Tutors INTERSECT SELECT Students.login_name FROM Students",
+        "db_id": "e_learning"
+    },
+    {
+        "sql": "SELECT Course_Authors_and_Tutors.login_name FROM Course_Authors_and_Tutors INTERSECT SELECT Students.login_name FROM Students",
+        "db_id": "e_learning"
+    },
+    {
+        "sql": "SELECT Course_Authors_and_Tutors.personal_name FROM Course_Authors_and_Tutors INTERSECT SELECT Students.personal_name FROM Students",
+        "db_id": "e_learning"
+    },
+    {
+        "sql": "SELECT Course_Authors_and_Tutors.personal_name FROM Course_Authors_and_Tutors INTERSECT SELECT Students.personal_name FROM Students",
+        "db_id": "e_learning"
+    },
+    {
+        "sql": "SELECT Claims.Date_Claim_Made, Claims.Date_Claim_Settled FROM Claims WHERE Claims.Amount_Claimed > (SELECT Avg(Claims.Amount_Claimed) FROM Claims)",
+        "db_id": "insurance_policies"
+    },
+    {
+        "sql": "SELECT Payments.Payment_Method_Code FROM Payments GROUP BY Payments.Payment_Method_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "insurance_policies"
+    },
+    {
+        "sql": "SELECT Payments.Payment_Method_Code FROM Payments GROUP BY Payments.Payment_Method_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "insurance_policies"
+    },
+    {
+        "sql": "SELECT Payments.Payment_Method_Code FROM Payments GROUP BY Payments.Payment_Method_Code ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "insurance_policies"
+    },
+    {
+        "sql": "SELECT Payments.Payment_Method_Code FROM Payments GROUP BY Payments.Payment_Method_Code ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "insurance_policies"
+    },
+    {
+        "sql": "SELECT Customer_Policies.Policy_Type_Code FROM Customer_Policies GROUP BY Customer_Policies.Policy_Type_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "insurance_policies"
+    },
+    {
+        "sql": "SELECT Customer_Policies.Policy_Type_Code FROM Customer_Policies GROUP BY Customer_Policies.Policy_Type_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "insurance_policies"
+    },
+    {
+        "sql": "SELECT Department.Head FROM Department GROUP BY Department.Head ORDER BY Count(Department.DepartmentID) Asc LIMIT 1",
+        "db_id": "hospital_1"
+    },
+    {
+        "sql": "SELECT Department.Head FROM Department GROUP BY Department.Head ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "hospital_1"
+    },
+    {
+        "sql": "SELECT Nurse.Name FROM Nurse GROUP BY Nurse.EmployeeID ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "hospital_1"
+    },
+    {
+        "sql": "SELECT Nurse.Name FROM Nurse GROUP BY Nurse.EmployeeID ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "hospital_1"
+    },
+    {
+        "sql": "SELECT ship.Type FROM ship GROUP BY ship.Type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "ship_mission"
+    },
+    {
+        "sql": "SELECT ship.Type FROM ship GROUP BY ship.Type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "ship_mission"
+    },
+    {
+        "sql": "SELECT ship.Name FROM ship WHERE ship.Ship_ID NOT IN (SELECT mission.Ship_ID FROM mission)",
+        "db_id": "ship_mission"
+    },
+    {
+        "sql": "SELECT ship.Name FROM ship WHERE ship.Ship_ID NOT IN (SELECT mission.Ship_ID FROM mission)",
+        "db_id": "ship_mission"
+    },
+    {
+        "sql": "SELECT list.Classroom FROM list GROUP BY list.Classroom ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "student_1"
+    },
+    {
+        "sql": "SELECT list.Classroom FROM list GROUP BY list.Classroom ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "student_1"
+    },
+    {
+        "sql": "SELECT company.Headquarters FROM company GROUP BY company.Headquarters ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "company_employee"
+    },
+    {
+        "sql": "SELECT people.Name FROM people WHERE people.People_ID NOT IN (SELECT employment.People_ID FROM employment)",
+        "db_id": "company_employee"
+    },
+    {
+        "sql": "SELECT film.Studio FROM film GROUP BY film.Studio ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "film_rank"
+    },
+    {
+        "sql": "SELECT film.Studio FROM film GROUP BY film.Studio ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "film_rank"
+    },
+    {
+        "sql": "SELECT film.Title FROM film WHERE film.Film_ID NOT IN (SELECT film_market_estimation.Film_ID FROM film_market_estimation)",
+        "db_id": "film_rank"
+    },
+    {
+        "sql": "SELECT film.Title FROM film WHERE film.Film_ID NOT IN (SELECT film_market_estimation.Film_ID FROM film_market_estimation)",
+        "db_id": "film_rank"
+    },
+    {
+        "sql": "SELECT Employees.Role_Code FROM Employees GROUP BY Employees.Role_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Doc_Tracking_DB"
+    },
+    {
+        "sql": "SELECT Employees.Role_Code FROM Employees GROUP BY Employees.Role_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Doc_Tracking_DB"
+    },
+    {
+        "sql": "SELECT Employees.Role_Code FROM Employees GROUP BY Employees.Role_Code ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "cre_Doc_Tracking_DB"
+    },
+    {
+        "sql": "SELECT Employees.Role_Code FROM Employees GROUP BY Employees.Role_Code ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "cre_Doc_Tracking_DB"
+    },
+    {
+        "sql": "SELECT Document_Locations.Location_Code FROM Document_Locations GROUP BY Document_Locations.Location_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Doc_Tracking_DB"
+    },
+    {
+        "sql": "SELECT Document_Locations.Location_Code FROM Document_Locations GROUP BY Document_Locations.Location_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Doc_Tracking_DB"
+    },
+    {
+        "sql": "SELECT Employees.Employee_ID FROM Employees EXCEPT SELECT Documents_to_be_Destroyed.Destruction_Authorised_by_Employee_ID FROM Documents_to_be_Destroyed",
+        "db_id": "cre_Doc_Tracking_DB"
+    },
+    {
+        "sql": "SELECT Employees.Employee_ID FROM Employees EXCEPT SELECT Documents_to_be_Destroyed.Destruction_Authorised_by_Employee_ID FROM Documents_to_be_Destroyed",
+        "db_id": "cre_Doc_Tracking_DB"
+    },
+    {
+        "sql": "SELECT Employees.Employee_ID FROM Employees EXCEPT SELECT Documents_to_be_Destroyed.Destroyed_by_Employee_ID FROM Documents_to_be_Destroyed",
+        "db_id": "cre_Doc_Tracking_DB"
+    },
+    {
+        "sql": "SELECT Employees.Employee_ID FROM Employees EXCEPT SELECT Documents_to_be_Destroyed.Destroyed_by_Employee_ID FROM Documents_to_be_Destroyed",
+        "db_id": "cre_Doc_Tracking_DB"
+    },
+    {
+        "sql": "SELECT Organisations.organisation_type FROM Organisations GROUP BY Organisations.organisation_type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "tracking_grants_for_research"
+    },
+    {
+        "sql": "SELECT Organisations.organisation_type FROM Organisations GROUP BY Organisations.organisation_type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "tracking_grants_for_research"
+    },
+    {
+        "sql": "SELECT Project_Staff.project_id, Count(*) FROM Project_Staff GROUP BY Project_Staff.project_id ORDER BY Count(*) Asc",
+        "db_id": "tracking_grants_for_research"
+    },
+    {
+        "sql": "SELECT Projects.project_details FROM Projects WHERE Projects.project_id NOT IN (SELECT Project_Outcomes.project_id FROM Project_Outcomes)",
+        "db_id": "tracking_grants_for_research"
+    },
+    {
+        "sql": "SELECT Projects.project_details FROM Projects WHERE Projects.project_id NOT IN (SELECT Project_Outcomes.project_id FROM Project_Outcomes)",
+        "db_id": "tracking_grants_for_research"
+    },
+    {
+        "sql": "SELECT Projects.project_details FROM Projects WHERE Projects.organisation_id IN (SELECT Projects.organisation_id FROM Projects GROUP BY Projects.organisation_id ORDER BY Count(*) Desc LIMIT 1)",
+        "db_id": "tracking_grants_for_research"
+    },
+    {
+        "sql": "SELECT Project_Staff.role_code FROM Project_Staff GROUP BY Project_Staff.role_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "tracking_grants_for_research"
+    },
+    {
+        "sql": "SELECT Project_Staff.role_code FROM Project_Staff GROUP BY Project_Staff.role_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "tracking_grants_for_research"
+    },
+    {
+        "sql": "SELECT Person.name FROM Person ORDER BY Person.age Desc LIMIT 1",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Person.name FROM Person ORDER BY Person.age Desc LIMIT 1",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Person.name FROM Person WHERE Person.job = 'student' ORDER BY Person.age Desc LIMIT 1",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Person.name FROM Person WHERE Person.gender = 'male' AND Person.age = (SELECT Min(Person.age) FROM Person WHERE Person.gender = 'male')",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Person.name FROM Person WHERE Person.gender = 'male' AND Person.age = (SELECT Min(Person.age) FROM Person WHERE Person.gender = 'male')",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Person.name FROM Person WHERE Person.age > (SELECT Max(Person.age) FROM Person WHERE Person.job = 'engineer' ORDER BY Person.age Asc) ORDER BY Person.age Asc",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Person.name FROM Person WHERE Person.age > (SELECT Min(Person.age) FROM Person WHERE Person.job = 'engineer' ORDER BY Person.age Asc)",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Person WHERE Person.age > (SELECT Max(Person.age) FROM Person WHERE Person.job = 'engineer')",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Person WHERE Person.age > (SELECT Person.age FROM Person WHERE Person.job = 'engineer')",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Person.name FROM Person WHERE Person.age > (SELECT Person.name FROM Person WHERE Person.age > 'terminal')",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Person.name, Person.age FROM Person WHERE Person.age > (SELECT Avg(Person.age) FROM Person)",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Person.name FROM Person EXCEPT SELECT PersonFriend.name FROM PersonFriend",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Person.name FROM Person EXCEPT SELECT PersonFriend.name FROM PersonFriend",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Count(DISTINCT PersonFriend.name) FROM PersonFriend WHERE PersonFriend.friend NOT IN (SELECT Person.name FROM Person WHERE Person.city = 'austin')",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT Count(DISTINCT PersonFriend.name) FROM PersonFriend WHERE PersonFriend.friend NOT IN (SELECT Person.name FROM Person WHERE Person.city = 'austin')",
+        "db_id": "network_2"
+    },
+    {
+        "sql": "SELECT member.Country FROM member GROUP BY member.Country ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "decoration_competition"
+    },
+    {
+        "sql": "SELECT member.Name FROM member WHERE member.Member_ID NOT IN (SELECT round.Member_ID FROM round)",
+        "db_id": "decoration_competition"
+    },
+    {
+        "sql": "SELECT Sum(Documents.access_count) FROM Documents GROUP BY Documents.document_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "document_management"
+    },
+    {
+        "sql": "SELECT Sum(Documents.access_count) FROM Documents GROUP BY Documents.document_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "document_management"
+    },
+    {
+        "sql": "SELECT Documents.document_name FROM Documents WHERE Documents.document_code NOT IN (SELECT Document_Sections.document_code FROM Document_Sections)",
+        "db_id": "document_management"
+    },
+    {
+        "sql": "SELECT Documents.document_name FROM Documents WHERE Documents.document_code NOT IN (SELECT Document_Sections.document_code FROM Document_Sections)",
+        "db_id": "document_management"
+    },
+    {
+        "sql": "SELECT Users.user_name, Users.password FROM Users GROUP BY Users.role_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "document_management"
+    },
+    {
+        "sql": "SELECT Users.user_name, Users.password FROM Users GROUP BY Users.role_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "document_management"
+    },
+    {
+        "sql": "SELECT Avg(Documents.access_count) FROM Documents GROUP BY Documents.document_structure_code ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "document_management"
+    },
+    {
+        "sql": "SELECT Companies.Industry FROM Companies GROUP BY Companies.Industry ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "company_office"
+    },
+    {
+        "sql": "SELECT Companies.Industry FROM Companies GROUP BY Companies.Industry ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "company_office"
+    },
+    {
+        "sql": "SELECT buildings.name FROM buildings WHERE buildings.id NOT IN (SELECT Office_locations.building_id FROM Office_locations)",
+        "db_id": "company_office"
+    },
+    {
+        "sql": "SELECT buildings.name FROM buildings WHERE buildings.id NOT IN (SELECT Office_locations.building_id FROM Office_locations)",
+        "db_id": "company_office"
+    },
+    {
+        "sql": "SELECT Companies.Industry FROM Companies WHERE Companies.Headquarters = 'USA' INTERSECT SELECT Companies.Industry FROM Companies WHERE Companies.Headquarters = 'China'",
+        "db_id": "company_office"
+    },
+    {
+        "sql": "SELECT Companies.Industry FROM Companies WHERE Companies.Headquarters = 'USA' INTERSECT SELECT Companies.Industry FROM Companies WHERE Companies.Headquarters = 'China'",
+        "db_id": "company_office"
+    },
+    {
+        "sql": "SELECT Products.Product_Type_Code FROM Products GROUP BY Products.Product_Type_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "solvency_ii"
+    },
+    {
+        "sql": "SELECT Products.Product_Type_Code FROM Products WHERE Products.Product_Price > 'terminal' INTERSECT SELECT Products.Product_Type_Code FROM Products WHERE Products.Product_Price < 'terminal'",
+        "db_id": "solvency_ii"
+    },
+    {
+        "sql": "SELECT Products.Product_Name FROM Products WHERE Products.Product_ID NOT IN (SELECT Products_in_Events.Product_ID FROM Products_in_Events)",
+        "db_id": "solvency_ii"
+    },
+    {
+        "sql": "SELECT artwork.Type FROM artwork GROUP BY artwork.Type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "entertainment_awards"
+    },
+    {
+        "sql": "SELECT artwork.Name FROM artwork WHERE artwork.Artwork_ID NOT IN (SELECT nomination.Artwork_ID FROM nomination)",
+        "db_id": "entertainment_awards"
+    },
+    {
+        "sql": "SELECT Customers.customer_name, Customers.customer_phone FROM Customers WHERE Customers.customer_id NOT IN (SELECT Mailshot_Customers.customer_id FROM Mailshot_Customers)",
+        "db_id": "customers_campaigns_ecommerce"
+    },
+    {
+        "sql": "SELECT Faculty.Rank FROM Faculty GROUP BY Faculty.Rank ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "college_3"
+    },
+    {
+        "sql": "SELECT Faculty.Rank FROM Faculty GROUP BY Faculty.Rank ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "college_3"
+    },
+    {
+        "sql": "SELECT Student.Fname FROM Student WHERE Student.StuID NOT IN (SELECT Enrolled_in.StuID FROM Enrolled_in)",
+        "db_id": "college_3"
+    },
+    {
+        "sql": "SELECT Student.Fname FROM Student WHERE Student.StuID NOT IN (SELECT Enrolled_in.StuID FROM Enrolled_in)",
+        "db_id": "college_3"
+    },
+    {
+        "sql": "SELECT Order_Items.product_id FROM Order_Items GROUP BY Order_Items.product_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "department_store"
+    },
+    {
+        "sql": "SELECT Order_Items.product_id FROM Order_Items GROUP BY Order_Items.product_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "department_store"
+    },
+    {
+        "sql": "SELECT Department_Stores.dept_store_chain_id FROM Department_Stores GROUP BY Department_Stores.dept_store_chain_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "department_store"
+    },
+    {
+        "sql": "SELECT Department_Stores.dept_store_chain_id FROM Department_Stores GROUP BY Department_Stores.dept_store_chain_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "department_store"
+    },
+    {
+        "sql": "SELECT Staff_Department_Assignments.department_id FROM Staff_Department_Assignments GROUP BY Staff_Department_Assignments.department_id ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "department_store"
+    },
+    {
+        "sql": "SELECT Staff_Department_Assignments.department_id FROM Staff_Department_Assignments GROUP BY Staff_Department_Assignments.department_id ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "department_store"
+    },
+    {
+        "sql": "SELECT Products.product_type_code FROM Products GROUP BY Products.product_type_code HAVING Avg(Products.product_price) > (SELECT Avg(Products.product_price) FROM Products)",
+        "db_id": "department_store"
+    },
+    {
+        "sql": "SELECT Products.product_type_code FROM Products GROUP BY Products.product_type_code HAVING Avg(Products.product_price) > (SELECT Avg(Products.product_price) FROM Products)",
+        "db_id": "department_store"
+    },
+    {
+        "sql": "SELECT Avg(Product_Suppliers.total_amount_purchased), Avg(Product_Suppliers.total_value_purchased) FROM Product_Suppliers WHERE Product_Suppliers.supplier_id = (SELECT Product_Suppliers.supplier_id FROM Product_Suppliers GROUP BY Product_Suppliers.supplier_id ORDER BY Count(*) Desc LIMIT 1)",
+        "db_id": "department_store"
+    },
+    {
+        "sql": "SELECT Avg(Product_Suppliers.total_amount_purchased), Avg(Product_Suppliers.total_value_purchased) FROM Product_Suppliers WHERE Product_Suppliers.supplier_id = (SELECT Product_Suppliers.supplier_id FROM Product_Suppliers GROUP BY Product_Suppliers.supplier_id ORDER BY Count(*) Desc LIMIT 1)",
+        "db_id": "department_store"
+    },
+    {
+        "sql": "SELECT aircraft.Aircraft FROM aircraft WHERE aircraft.Aircraft_ID NOT IN (SELECT match.Winning_Aircraft FROM match)",
+        "db_id": "aircraft"
+    },
+    {
+        "sql": "SELECT aircraft.Aircraft FROM aircraft WHERE aircraft.Aircraft_ID NOT IN (SELECT match.Winning_Aircraft FROM match)",
+        "db_id": "aircraft"
+    },
+    {
+        "sql": "SELECT pilot.Name, pilot.Age FROM pilot ORDER BY pilot.Age Asc LIMIT 1",
+        "db_id": "aircraft"
+    },
+    {
+        "sql": "SELECT pilot.Age, pilot.Name FROM pilot ORDER BY pilot.Age Asc LIMIT 1",
+        "db_id": "aircraft"
+    },
+    {
+        "sql": "SELECT Organizations.organization_id FROM Organizations WHERE Organizations.organization_id NOT IN (SELECT Organizations.parent_organization_id FROM Organizations)",
+        "db_id": "local_govt_and_lot"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Customers WHERE Customers.customer_id NOT IN (SELECT Customer_Events.customer_id FROM Customer_Events)",
+        "db_id": "local_govt_and_lot"
+    },
+    {
+        "sql": "SELECT school.Denomination, Count(*) FROM school GROUP BY school.Denomination ORDER BY Count(*) Desc",
+        "db_id": "school_player"
+    },
+    {
+        "sql": "SELECT school.Denomination, Count(*) FROM school GROUP BY school.Denomination ORDER BY Count(*) Desc",
+        "db_id": "school_player"
+    },
+    {
+        "sql": "SELECT school.Location FROM school WHERE school.School_ID NOT IN (SELECT player.School_ID FROM player)",
+        "db_id": "school_player"
+    },
+    {
+        "sql": "SELECT school.Location FROM school WHERE school.School_ID NOT IN (SELECT player.School_ID FROM player)",
+        "db_id": "school_player"
+    },
+    {
+        "sql": "SELECT school.Denomination FROM school WHERE school.Founded < 'terminal' INTERSECT SELECT school.Denomination FROM school WHERE school.Founded > 'terminal'",
+        "db_id": "school_player"
+    },
+    {
+        "sql": "SELECT district.Headquartered_City FROM district GROUP BY district.Headquartered_City ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "store_product"
+    },
+    {
+        "sql": "SELECT product.max_page_size FROM product ORDER BY product.max_page_size Desc LIMIT 1",
+        "db_id": "store_product"
+    },
+    {
+        "sql": "SELECT Max(product.max_page_size) FROM product GROUP BY product.max_page_size ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "store_product"
+    },
+    {
+        "sql": "SELECT Sum(district.City_Population) FROM district WHERE district.City_Area > (SELECT Avg(district.City_Area) FROM district)",
+        "db_id": "store_product"
+    },
+    {
+        "sql": "SELECT Sum(district.City_Population) FROM district WHERE district.City_Area > (SELECT Avg(district.City_Area) FROM district)",
+        "db_id": "store_product"
+    },
+    {
+        "sql": "SELECT Tryout.pPos FROM Tryout GROUP BY Tryout.pPos ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "soccer_2"
+    },
+    {
+        "sql": "SELECT Tryout.pPos FROM Tryout GROUP BY Tryout.pPos ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "soccer_2"
+    },
+    {
+        "sql": "SELECT Count(*), Tryout.cName FROM Tryout GROUP BY Tryout.cName ORDER BY Count(*) Desc",
+        "db_id": "soccer_2"
+    },
+    {
+        "sql": "SELECT Avg(Player.HS), Max(Player.HS) FROM Player WHERE Player.pID IN (SELECT Tryout.pID FROM Tryout)",
+        "db_id": "soccer_2"
+    },
+    {
+        "sql": "SELECT College.state FROM College WHERE College.enr < (SELECT Max(College.enr) FROM College)",
+        "db_id": "soccer_2"
+    },
+    {
+        "sql": "SELECT College.state FROM College WHERE College.enr < (SELECT Max(College.enr) FROM College)",
+        "db_id": "soccer_2"
+    },
+    {
+        "sql": "SELECT Count(DISTINCT College.state) FROM College WHERE College.enr > (SELECT Avg(College.enr) FROM College)",
+        "db_id": "soccer_2"
+    },
+    {
+        "sql": "SELECT Count(DISTINCT College.state) FROM College WHERE College.enr > (SELECT Avg(College.enr) FROM College)",
+        "db_id": "soccer_2"
+    },
+    {
+        "sql": "SELECT Count(DISTINCT College.state) FROM College WHERE College.enr < (SELECT Avg(College.enr) FROM College)",
+        "db_id": "soccer_2"
+    },
+    {
+        "sql": "SELECT Count(DISTINCT College.state) FROM College WHERE College.enr < (SELECT Avg(College.enr) FROM College)",
+        "db_id": "soccer_2"
+    },
+    {
+        "sql": "SELECT device.Software_Platform FROM device GROUP BY device.Software_Platform ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "device"
+    },
+    {
+        "sql": "SELECT device.Software_Platform FROM device GROUP BY device.Software_Platform ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "device"
+    },
+    {
+        "sql": "SELECT shop.Shop_Name FROM shop WHERE shop.Shop_ID NOT IN (SELECT stock.Shop_ID FROM stock)",
+        "db_id": "device"
+    },
+    {
+        "sql": "SELECT shop.Shop_Name FROM shop WHERE shop.Shop_ID NOT IN (SELECT stock.Shop_ID FROM stock)",
+        "db_id": "device"
+    },
+    {
+        "sql": "SELECT device.Carrier FROM device WHERE device.Device_ID NOT IN (SELECT stock.Device_ID FROM stock)",
+        "db_id": "device"
+    },
+    {
+        "sql": "SELECT device.Carrier FROM device WHERE device.Device_ID NOT IN (SELECT stock.Device_ID FROM stock)",
+        "db_id": "device"
+    },
+    {
+        "sql": "SELECT Albums.Label FROM Albums GROUP BY Albums.Label ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Albums.Label FROM Albums GROUP BY Albums.Label ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Band.Lastname FROM Band GROUP BY Band.Lastname ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Band.Lastname FROM Band GROUP BY Band.Lastname ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Instruments.Instrument FROM Instruments GROUP BY Instruments.Instrument ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Instruments.Instrument FROM Instruments GROUP BY Instruments.Instrument ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Vocals.Type FROM Vocals GROUP BY Vocals.Type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Vocals.Type FROM Vocals GROUP BY Vocals.Type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Songs.Title FROM Songs WHERE Songs.SongId NOT IN (SELECT Vocals.SongId FROM Vocals)",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Band.Lastname FROM Band GROUP BY Band.Lastname ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT DISTINCT Songs.Title FROM Songs WHERE Songs.SongId NOT IN (SELECT Vocals.SongId FROM Vocals)",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Songs.Title FROM Songs WHERE Songs.SongId NOT IN (SELECT Vocals.SongId FROM Vocals)",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Songs.Title FROM Songs WHERE Songs.SongId NOT IN (SELECT Vocals.SongId FROM Vocals)",
+        "db_id": "music_2"
+    },
+    {
+        "sql": "SELECT Manufacturers.Name FROM Manufacturers WHERE Manufacturers.Revenue > (SELECT Avg(Manufacturers.Revenue) FROM Manufacturers)",
+        "db_id": "manufactory_1"
+    },
+    {
+        "sql": "SELECT Manufacturers.Name FROM Manufacturers WHERE Manufacturers.Revenue > (SELECT Avg(Manufacturers.Revenue) FROM Manufacturers)",
+        "db_id": "manufactory_1"
+    },
+    {
+        "sql": "SELECT Count(*) FROM branch WHERE branch.membership_amount > (SELECT Avg(branch.membership_amount) FROM branch)",
+        "db_id": "shop_membership"
+    },
+    {
+        "sql": "SELECT Count(*) FROM branch WHERE branch.membership_amount > (SELECT Avg(branch.membership_amount) FROM branch)",
+        "db_id": "shop_membership"
+    },
+    {
+        "sql": "SELECT member.Level FROM member GROUP BY member.Level ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "shop_membership"
+    },
+    {
+        "sql": "SELECT member.Level FROM member GROUP BY member.Level ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "shop_membership"
+    },
+    {
+        "sql": "SELECT member.Name FROM member WHERE member.Member_ID NOT IN (SELECT membership_register_branch.Member_ID FROM membership_register_branch)",
+        "db_id": "shop_membership"
+    },
+    {
+        "sql": "SELECT member.Name FROM member WHERE member.Member_ID NOT IN (SELECT membership_register_branch.Member_ID FROM membership_register_branch)",
+        "db_id": "shop_membership"
+    },
+    {
+        "sql": "SELECT branch.Name, branch.City FROM branch WHERE branch.Branch_ID NOT IN (SELECT membership_register_branch.Branch_ID FROM membership_register_branch)",
+        "db_id": "shop_membership"
+    },
+    {
+        "sql": "SELECT branch.Name, branch.City FROM branch WHERE branch.Branch_ID NOT IN (SELECT membership_register_branch.Branch_ID FROM membership_register_branch)",
+        "db_id": "shop_membership"
+    },
+    {
+        "sql": "SELECT Student.Major FROM Student GROUP BY Student.Major ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "voter_2"
+    },
+    {
+        "sql": "SELECT Student.Major FROM Student GROUP BY Student.Major ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "voter_2"
+    },
+    {
+        "sql": "SELECT Student.city_code FROM Student GROUP BY Student.city_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "voter_2"
+    },
+    {
+        "sql": "SELECT Student.city_code FROM Student GROUP BY Student.city_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "voter_2"
+    },
+    {
+        "sql": "SELECT Ref_Colors.color_description FROM Ref_Colors GROUP BY Ref_Colors.color_description ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "products_gen_characteristics"
+    },
+    {
+        "sql": "SELECT Ref_Colors.color_description FROM Ref_Colors GROUP BY Ref_Colors.color_description ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "products_gen_characteristics"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Ref_Colors WHERE Ref_Colors.color_code NOT IN (SELECT Products.color_code FROM Products)",
+        "db_id": "products_gen_characteristics"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Ref_Colors WHERE Ref_Colors.color_code NOT IN (SELECT Products.color_code FROM Products)",
+        "db_id": "products_gen_characteristics"
+    },
+    {
+        "sql": "SELECT stadium.name FROM stadium WHERE stadium.Capacity < (SELECT Avg(stadium.Capacity) FROM stadium)",
+        "db_id": "swimming"
+    },
+    {
+        "sql": "SELECT stadium.Country FROM stadium GROUP BY stadium.Country ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "swimming"
+    },
+    {
+        "sql": "SELECT stadium.Country FROM stadium WHERE stadium.Capacity > 'terminal' INTERSECT SELECT stadium.Country FROM stadium WHERE stadium.Capacity < 'terminal'",
+        "db_id": "swimming"
+    },
+    {
+        "sql": "SELECT stadium.Country FROM stadium EXCEPT SELECT stadium.Country FROM stadium WHERE stadium.Opening_year > '2006'",
+        "db_id": "swimming"
+    },
+    {
+        "sql": "SELECT stadium.name FROM stadium WHERE stadium.ID NOT IN (SELECT event.Stadium_ID FROM event)",
+        "db_id": "swimming"
+    },
+    {
+        "sql": "SELECT swimmer.name FROM swimmer WHERE swimmer.ID NOT IN (SELECT record.Swimmer_ID FROM record)",
+        "db_id": "swimming"
+    },
+    {
+        "sql": "SELECT railway.Builder FROM railway GROUP BY railway.Builder ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "railway"
+    },
+    {
+        "sql": "SELECT railway.ObjectNumber FROM railway WHERE railway.Railway_ID NOT IN (SELECT train.Railway_ID FROM train)",
+        "db_id": "railway"
+    },
+    {
+        "sql": "SELECT manager.Country FROM manager WHERE manager.Age > '46' INTERSECT SELECT manager.Country FROM manager WHERE manager.Age < '46'",
+        "db_id": "railway"
+    },
+    {
+        "sql": "SELECT Customers.customer_name, Customers.customer_phone FROM Customers WHERE Customers.customer_id NOT IN (SELECT Customer_Address_History.customer_id FROM Customer_Address_History)",
+        "db_id": "customers_and_products_contacts"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Products WHERE Products.product_price > (SELECT Avg(Products.product_price) FROM Products)",
+        "db_id": "customers_and_products_contacts"
+    },
+    {
+        "sql": "SELECT Dorm.dorm_name FROM Dorm WHERE Dorm.dormid NOT IN (SELECT Has_amenity.dormid FROM Has_amenity)",
+        "db_id": "dorm_1"
+    },
+    {
+        "sql": "SELECT Dorm.dorm_name FROM Dorm WHERE Dorm.dormid NOT IN (SELECT Has_amenity.dormid FROM Has_amenity)",
+        "db_id": "dorm_1"
+    },
+    {
+        "sql": "SELECT Dorm.dorm_name, Dorm.gender FROM Dorm WHERE Dorm.student_capacity > 'terminal' OR Dorm.student_capacity < 'terminal'",
+        "db_id": "dorm_1"
+    },
+    {
+        "sql": "SELECT Student.city_code FROM Student GROUP BY Student.city_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "dorm_1"
+    },
+    {
+        "sql": "SELECT Student.city_code FROM Student GROUP BY Student.city_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "dorm_1"
+    },
+    {
+        "sql": "SELECT Student.Fname, Student.LName FROM Student WHERE Student.Age < (SELECT Avg(Student.Age) FROM Student)",
+        "db_id": "dorm_1"
+    },
+    {
+        "sql": "SELECT Student.Fname, Student.LName FROM Student WHERE Student.Age < (SELECT Avg(Student.Age) FROM Student)",
+        "db_id": "dorm_1"
+    },
+    {
+        "sql": "SELECT Student.Fname, Student.LName FROM Student WHERE Student.Major != (SELECT Max(Student.Major) FROM Student)",
+        "db_id": "dorm_1"
+    },
+    {
+        "sql": "SELECT Student.Fname, Student.LName FROM Student WHERE Student.Major != (SELECT Max(Student.Major) FROM Student)",
+        "db_id": "dorm_1"
+    },
+    {
+        "sql": "SELECT Customers.email_address, Customers.phone_number FROM Customers WHERE Customers.customer_id NOT IN (SELECT Complaints.customer_id FROM Complaints)",
+        "db_id": "customer_complaints"
+    },
+    {
+        "sql": "SELECT Customers.email_address, Customers.phone_number FROM Customers WHERE Customers.customer_id NOT IN (SELECT Complaints.customer_id FROM Complaints)",
+        "db_id": "customer_complaints"
+    },
+    {
+        "sql": "SELECT Products.product_price FROM Products WHERE Products.product_id NOT IN (SELECT Complaints.product_id FROM Complaints)",
+        "db_id": "customer_complaints"
+    },
+    {
+        "sql": "SELECT Products.product_price FROM Products WHERE Products.product_id NOT IN (SELECT Complaints.product_id FROM Complaints)",
+        "db_id": "customer_complaints"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Customers GROUP BY Customers.customer_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customer_complaints"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Customers GROUP BY Customers.customer_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customer_complaints"
+    },
+    {
+        "sql": "SELECT Customers.state FROM Customers GROUP BY Customers.state ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "customer_complaints"
+    },
+    {
+        "sql": "SELECT Customers.state FROM Customers GROUP BY Customers.state ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "customer_complaints"
+    },
+    {
+        "sql": "SELECT submission.College FROM submission GROUP BY submission.College ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "workshop_paper"
+    },
+    {
+        "sql": "SELECT submission.Author FROM submission WHERE submission.Submission_ID NOT IN (SELECT Acceptance.Submission_ID FROM Acceptance)",
+        "db_id": "workshop_paper"
+    },
+    {
+        "sql": "SELECT submission.Author FROM submission WHERE submission.Submission_ID NOT IN (SELECT Acceptance.Submission_ID FROM Acceptance)",
+        "db_id": "workshop_paper"
+    },
+    {
+        "sql": "SELECT Transactions.investor_id, Avg(Transactions.share_count) FROM Transactions GROUP BY Transactions.investor_id ORDER BY Avg(Transactions.share_count) Asc",
+        "db_id": "tracking_share_transactions"
+    },
+    {
+        "sql": "SELECT Transactions.transaction_type_code FROM Transactions GROUP BY Transactions.transaction_type_code ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "tracking_share_transactions"
+    },
+    {
+        "sql": "SELECT Transactions.transaction_type_code FROM Transactions GROUP BY Transactions.transaction_type_code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "tracking_share_transactions"
+    },
+    {
+        "sql": "SELECT Tourist_Attractions.Name, Tourist_Attractions.Opening_Hours FROM Tourist_Attractions WHERE Tourist_Attractions.How_to_Get_There = 'bus' OR Tourist_Attractions.How_to_Get_There = 'walk'",
+        "db_id": "cre_Theme_park"
+    },
+    {
+        "sql": "SELECT Tourist_Attractions.Name, Tourist_Attractions.Opening_Hours FROM Tourist_Attractions WHERE Tourist_Attractions.How_to_Get_There = 'bus' OR Tourist_Attractions.How_to_Get_There = 'walk'",
+        "db_id": "cre_Theme_park"
+    },
+    {
+        "sql": "SELECT Tourist_Attractions.How_to_Get_There FROM Tourist_Attractions GROUP BY Tourist_Attractions.How_to_Get_There ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Theme_park"
+    },
+    {
+        "sql": "SELECT Tourist_Attractions.How_to_Get_There FROM Tourist_Attractions GROUP BY Tourist_Attractions.How_to_Get_There ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Theme_park"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Visitors WHERE Visitors.Tourist_ID NOT IN (SELECT Visits.Tourist_ID FROM Visits)",
+        "db_id": "cre_Theme_park"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Visitors WHERE Visitors.Tourist_ID NOT IN (SELECT Visits.Tourist_ID FROM Visits)",
+        "db_id": "cre_Theme_park"
+    },
+    {
+        "sql": "SELECT Video_Games.GType FROM Video_Games GROUP BY Video_Games.GType ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "game_1"
+    },
+    {
+        "sql": "SELECT Video_Games.GType FROM Video_Games GROUP BY Video_Games.GType ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "game_1"
+    },
+    {
+        "sql": "SELECT Video_Games.GType FROM Video_Games GROUP BY Video_Games.GType ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "game_1"
+    },
+    {
+        "sql": "SELECT Video_Games.GType FROM Video_Games GROUP BY Video_Games.GType ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "game_1"
+    },
+    {
+        "sql": "SELECT Student.StuID FROM Student EXCEPT SELECT SportsInfo.StuID FROM SportsInfo",
+        "db_id": "game_1"
+    },
+    {
+        "sql": "SELECT Student.StuID FROM Student EXCEPT SELECT SportsInfo.StuID FROM SportsInfo",
+        "db_id": "game_1"
+    },
+    {
+        "sql": "SELECT Student.StuID FROM Student EXCEPT SELECT Plays_Games.StuID FROM Plays_Games",
+        "db_id": "game_1"
+    },
+    {
+        "sql": "SELECT SportsInfo.StuID FROM SportsInfo INTERSECT SELECT Plays_Games.StuID FROM Plays_Games",
+        "db_id": "game_1"
+    },
+    {
+        "sql": "SELECT SportsInfo.StuID FROM SportsInfo INTERSECT SELECT Plays_Games.StuID FROM Plays_Games",
+        "db_id": "game_1"
+    },
+    {
+        "sql": "SELECT Customers.payment_method FROM Customers GROUP BY Customers.payment_method ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customers_and_addresses"
+    },
+    {
+        "sql": "SELECT Customers.payment_method FROM Customers GROUP BY Customers.payment_method ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "customers_and_addresses"
+    },
+    {
+        "sql": "SELECT music_festival.Result FROM music_festival GROUP BY music_festival.Result ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_4"
+    },
+    {
+        "sql": "SELECT music_festival.Result FROM music_festival GROUP BY music_festival.Result ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "music_4"
+    },
+    {
+        "sql": "SELECT artist.Famous_Title FROM artist WHERE artist.Artist_ID NOT IN (SELECT volume.Artist_ID FROM volume)",
+        "db_id": "music_4"
+    },
+    {
+        "sql": "SELECT artist.Famous_Title FROM artist WHERE artist.Artist_ID NOT IN (SELECT volume.Artist_ID FROM volume)",
+        "db_id": "music_4"
+    },
+    {
+        "sql": "SELECT music_festival.Result, Count(*) FROM music_festival GROUP BY music_festival.Result ORDER BY Count(*) Desc",
+        "db_id": "music_4"
+    },
+    {
+        "sql": "SELECT music_festival.Result, Count(*) FROM music_festival GROUP BY music_festival.Result ORDER BY Count(*) Desc",
+        "db_id": "music_4"
+    },
+    {
+        "sql": "SELECT roller_coaster.Status FROM roller_coaster GROUP BY roller_coaster.Status ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "roller_coaster"
+    },
+    {
+        "sql": "SELECT captain.Rank FROM captain GROUP BY captain.Rank ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "ship_1"
+    },
+    {
+        "sql": "SELECT Ship.Flag FROM Ship GROUP BY Ship.Flag ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "ship_1"
+    },
+    {
+        "sql": "SELECT Ship.Flag FROM Ship GROUP BY Ship.Flag ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "ship_1"
+    },
+    {
+        "sql": "SELECT Ship.Built_Year FROM Ship GROUP BY Ship.Built_Year ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "ship_1"
+    },
+    {
+        "sql": "SELECT Ship.Built_Year FROM Ship GROUP BY Ship.Built_Year ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "ship_1"
+    },
+    {
+        "sql": "SELECT Ship.Name, Ship.Class FROM Ship WHERE Ship.Ship_ID NOT IN (SELECT captain.Ship_ID FROM captain)",
+        "db_id": "ship_1"
+    },
+    {
+        "sql": "SELECT Ship.Name, Ship.Class FROM Ship WHERE Ship.Ship_ID NOT IN (SELECT captain.Ship_ID FROM captain)",
+        "db_id": "ship_1"
+    },
+    {
+        "sql": "SELECT driver.Home_city FROM driver GROUP BY driver.Home_city ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "school_bus"
+    },
+    {
+        "sql": "SELECT driver.Home_city FROM driver EXCEPT SELECT driver.Home_city FROM driver WHERE driver.Age > '40'",
+        "db_id": "school_bus"
+    },
+    {
+        "sql": "SELECT driver.Name FROM driver WHERE driver.Driver_ID NOT IN (SELECT school_bus.Driver_ID FROM school_bus)",
+        "db_id": "school_bus"
+    },
+    {
+        "sql": "SELECT school.School, school.Type FROM school WHERE school.School_ID NOT IN (SELECT school_bus.School_ID FROM school_bus)",
+        "db_id": "school_bus"
+    },
+    {
+        "sql": "SELECT airport.id, airport.name, airport.IATA FROM airport GROUP BY airport.id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "flight_company"
+    },
+    {
+        "sql": "SELECT operate_company.Type, Count(*) FROM operate_company GROUP BY operate_company.Type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "flight_company"
+    },
+    {
+        "sql": "SELECT flight.Pilot FROM flight GROUP BY flight.Pilot ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "flight_company"
+    },
+    {
+        "sql": "SELECT Documents.Project_ID FROM Documents GROUP BY Documents.Project_ID ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "cre_Docs_and_Epenses"
+    },
+    {
+        "sql": "SELECT Documents.Project_ID FROM Documents GROUP BY Documents.Project_ID ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "cre_Docs_and_Epenses"
+    },
+    {
+        "sql": "SELECT Documents.Document_Type_Code FROM Documents GROUP BY Documents.Document_Type_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Docs_and_Epenses"
+    },
+    {
+        "sql": "SELECT Documents.Document_Type_Code FROM Documents GROUP BY Documents.Document_Type_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Docs_and_Epenses"
+    },
+    {
+        "sql": "SELECT Documents_with_Expenses.Budget_Type_Code FROM Documents_with_Expenses GROUP BY Documents_with_Expenses.Budget_Type_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Docs_and_Epenses"
+    },
+    {
+        "sql": "SELECT Documents_with_Expenses.Budget_Type_Code FROM Documents_with_Expenses GROUP BY Documents_with_Expenses.Budget_Type_Code ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "cre_Docs_and_Epenses"
+    },
+    {
+        "sql": "SELECT Documents.Document_ID FROM Documents WHERE Documents.Document_ID NOT IN (SELECT Documents_with_Expenses.Document_ID FROM Documents_with_Expenses)",
+        "db_id": "cre_Docs_and_Epenses"
+    },
+    {
+        "sql": "SELECT Documents.Document_ID FROM Documents WHERE Documents.Document_ID NOT IN (SELECT Documents_with_Expenses.Document_ID FROM Documents_with_Expenses)",
+        "db_id": "cre_Docs_and_Epenses"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Documents WHERE Documents.Document_ID NOT IN (SELECT Documents_with_Expenses.Document_ID FROM Documents_with_Expenses)",
+        "db_id": "cre_Docs_and_Epenses"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Documents WHERE Documents.Document_ID NOT IN (SELECT Documents_with_Expenses.Document_ID FROM Documents_with_Expenses)",
+        "db_id": "cre_Docs_and_Epenses"
+    },
+    {
+        "sql": "SELECT Projects.Name FROM Projects WHERE Projects.Hours > (SELECT Avg(Projects.Hours) FROM Projects)",
+        "db_id": "scientist_1"
+    },
+    {
+        "sql": "SELECT Projects.Name FROM Projects WHERE Projects.Hours > (SELECT Avg(Projects.Hours) FROM Projects)",
+        "db_id": "scientist_1"
+    },
+    {
+        "sql": "SELECT Projects.Name FROM Projects WHERE Projects.Code NOT IN (SELECT AssignedTo.Project FROM AssignedTo)",
+        "db_id": "scientist_1"
+    },
+    {
+        "sql": "SELECT Projects.Name FROM Projects WHERE Projects.Code NOT IN (SELECT AssignedTo.Project FROM AssignedTo)",
+        "db_id": "scientist_1"
+    },
+    {
+        "sql": "SELECT Scientists.Name FROM Scientists WHERE Scientists.SSN NOT IN (SELECT AssignedTo.Scientist FROM AssignedTo)",
+        "db_id": "scientist_1"
+    },
+    {
+        "sql": "SELECT Scientists.Name FROM Scientists WHERE Scientists.SSN NOT IN (SELECT AssignedTo.Scientist FROM AssignedTo)",
+        "db_id": "scientist_1"
+    },
+    {
+        "sql": "SELECT station.Name FROM station WHERE station.Station_ID NOT IN (SELECT train_station.Station_ID FROM train_station)",
+        "db_id": "train_station"
+    },
+    {
+        "sql": "SELECT Customers.customer_status_code FROM Customers GROUP BY Customers.customer_status_code ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "driving_school"
+    },
+    {
+        "sql": "SELECT Customers.customer_status_code FROM Customers GROUP BY Customers.customer_status_code ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "driving_school"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Customers WHERE Customers.customer_id NOT IN (SELECT Customer_Payments.customer_id FROM Customer_Payments)",
+        "db_id": "driving_school"
+    },
+    {
+        "sql": "SELECT Count(*) FROM Customers WHERE Customers.customer_id NOT IN (SELECT Customer_Payments.customer_id FROM Customer_Payments)",
+        "db_id": "driving_school"
+    },
+    {
+        "sql": "SELECT Customers.last_name FROM Customers INTERSECT SELECT Staff.last_name FROM Staff",
+        "db_id": "driving_school"
+    },
+    {
+        "sql": "SELECT Customers.last_name FROM Customers INTERSECT SELECT Staff.last_name FROM Staff",
+        "db_id": "driving_school"
+    },
+    {
+        "sql": "SELECT Faculty.Building FROM Faculty GROUP BY Faculty.Building ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "activity_1"
+    },
+    {
+        "sql": "SELECT Faculty.Building FROM Faculty GROUP BY Faculty.Building ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "activity_1"
+    },
+    {
+        "sql": "SELECT Faculty.Rank FROM Faculty GROUP BY Faculty.Rank ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "activity_1"
+    },
+    {
+        "sql": "SELECT Faculty.Rank FROM Faculty GROUP BY Faculty.Rank ORDER BY Count(*) Asc LIMIT 1",
+        "db_id": "activity_1"
+    },
+    {
+        "sql": "SELECT Faculty.FacID FROM Faculty EXCEPT SELECT Faculty_Participates_in.FacID FROM Faculty_Participates_in",
+        "db_id": "activity_1"
+    },
+    {
+        "sql": "SELECT Faculty.FacID FROM Faculty EXCEPT SELECT Faculty_Participates_in.FacID FROM Faculty_Participates_in",
+        "db_id": "activity_1"
+    },
+    {
+        "sql": "SELECT Student.StuID FROM Student EXCEPT SELECT Participates_in.stuid FROM Participates_in",
+        "db_id": "activity_1"
+    },
+    {
+        "sql": "SELECT Student.StuID FROM Student EXCEPT SELECT Participates_in.stuid FROM Participates_in",
+        "db_id": "activity_1"
+    },
+    {
+        "sql": "SELECT airlines.country FROM airlines GROUP BY airlines.country ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "flight_4"
+    },
+    {
+        "sql": "SELECT airlines.country FROM airlines WHERE airlines.active = 'Y' GROUP BY airlines.country ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "flight_4"
+    },
+    {
+        "sql": "SELECT airlines.country FROM airlines WHERE airlines.active = 'Y' GROUP BY airlines.country ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "flight_4"
+    },
+    {
+        "sql": "SELECT airlines.country, Count(*) FROM airlines GROUP BY airlines.country ORDER BY Count(*) Desc",
+        "db_id": "flight_4"
+    },
+    {
+        "sql": "SELECT airlines.country, Count(*) FROM airlines GROUP BY airlines.country ORDER BY Count(*) Desc",
+        "db_id": "flight_4"
+    },
+    {
+        "sql": "SELECT airports.country, Count(*) FROM airports GROUP BY airports.country ORDER BY Count(*) Desc",
+        "db_id": "flight_4"
+    },
+    {
+        "sql": "SELECT Orders.customer_id FROM Orders GROUP BY Orders.customer_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "tracking_orders"
+    },
+    {
+        "sql": "SELECT Order_Items.order_id FROM Order_Items GROUP BY Order_Items.order_id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "tracking_orders"
+    },
+    {
+        "sql": "SELECT architect.id, architect.name, architect.nationality FROM architect GROUP BY architect.id ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "architecture"
+    },
+    {
+        "sql": "SELECT mill.type, Count(*) FROM mill GROUP BY mill.type ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "architecture"
+    },
+    {
+        "sql": "SELECT book_club.Publisher FROM book_club GROUP BY book_club.Publisher ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "culture_company"
+    },
+    {
+        "sql": "SELECT book_club.Publisher FROM book_club GROUP BY book_club.Publisher ORDER BY Count(*) Desc LIMIT 1",
+        "db_id": "culture_company"
+    }
+]

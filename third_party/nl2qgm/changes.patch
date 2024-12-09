@@ -1,0 +1,162 @@
+diff --git a/client.py b/client.py
+index 84fd0e5..44a0440 100644
+--- a/client.py
++++ b/client.py
+@@ -51,7 +51,7 @@ DB_SCHEMA = {}
+ 
+ POSTGRES_CURSOR = None
+ 
+-
++os.environ['CUDA_VISIBLE_DEVICES']='2'
+ @attr.s
+ class InferConfig:
+     mode = attr.ib()
+@@ -1130,16 +1130,16 @@ def main(args):
+     server_ip = args.server_ip
+     server_port = args.server_port
+     path_dic = {
+-        "config": "/home/hkkang/nl2sql_web/saved_model/user_intent/config-20220110T083412.json",
+-        "model" : "/home/hkkang/nl2sql_web/saved_model/user_intent/model_checkpoint-013000.pt",
+-        "output": "/home/hkkang/nl2sql_web/saved_model/user_intent/possible_outputs.json",
++        "config": "/mnt/sdb1/shpark/logdir/cosql-history/bs=24,lr=7.4e-04,bert_lr=3.0e-06,end_lr=0e0,seed=4/config-20231101T093016.json",
++        "model" : "/mnt/sdb1/shpark/logdir/cosql-history/bs=24,lr=7.4e-04,bert_lr=3.0e-06,end_lr=0e0,seed=4/model_checkpoint-013000.pt",
++        "output": "/mnt/sdb1/shpark/logdir/cosql-history/bs=24,lr=7.4e-04,bert_lr=3.0e-06,end_lr=0e0,seed=4/possible_outputs.json",
+     }
+ 
+     kor_device = "cuda:0"
+     eng_device = "cuda:0"
+     user_intent_device = eng_device
+-    db_path = "/home/hkkang/NL2QGM/data/spider/database/"
+-    table_path = "/home/hkkang/NL2QGM/data/spider/tables.json"
++    db_path = "/home/nl2qgm/data/spider/database/"
++    table_path = "/home/nl2qgm/data/spider/tables.json"
+ 
+     model_load_start_time = time.time()
+     if kor_model_path:
+@@ -1147,7 +1147,7 @@ def main(args):
+         
+     if eng_model_path:
+         eng_model, eng_preprocessor = get_model_from_path2(eng_model_path, eng_device, db_path, table_path)
+-        user_intent_model = get_user_intent_model(path_dic, user_intent_device, eng_preprocessor)
++        #user_intent_model = get_user_intent_model(path_dic, user_intent_device, eng_preprocessor)
+ 
+     logging.info(f"Model Load Time: {(time.time() - model_load_start_time):.2f}")
+ 
+@@ -1208,10 +1208,11 @@ def main(args):
+                 sql = inferred_code
+ 
+                 # User intent
+-                question_changed = user_intent_model.change_input_format(question)
+-                orig_item, preproc_item = eng_preprocessor.run(question_changed, db_id)
+-                pred_label = user_intent_model([preproc_item])
+-                    
++                #question_changed = user_intent_model.change_input_format(question)
++                orig_item, preproc_item = eng_preprocessor.run(question, db_id)
++                #orig_item, preproc_item = eng_preprocessor.run(question_changed, db_id)
++                #pred_label = user_intent_model([preproc_item])
++                pred_label = "INFORM_SQL"
+                 logging.info("Inference Time: %f\n\n" % (time.time() - infer_start_time))
+                 logging.info(question)
+                 logging.info(sql)
+@@ -1262,10 +1263,10 @@ if __name__ == "__main__":
+ 
+         model_path_group = parser.add_argument_group("model_path")
+         model_path_group.add_argument("--eng_model_path", type=str, default="saved_model/eng/")
+-        model_path_group.add_argument("--kor_model_path", type=str, default="saved_model/kor/")
++        model_path_group.add_argument("--kor_model_path", type=str)
+ 
+         db_group = parser.add_argument_group("db")
+-        db_group.add_argument("--db_id", type=str, default=None)
++        db_group.add_argument("--db_id", type=str, default="concert_singer")
+         db_group.add_argument("--db_type", type=str, default="postgres")
+ 
+         server_group = parser.add_argument_group("server")
+diff --git a/experiments/spider-electra-run-no-join.jsonnet b/experiments/spider-electra-run-no-join.jsonnet
+index 4a2a4ab..3ed1b38 100644
+--- a/experiments/spider-electra-run-no-join.jsonnet
++++ b/experiments/spider-electra-run-no-join.jsonnet
+@@ -1,11 +1,11 @@
+ {
+-    logdir: "logdir/spider_electra_run_no_join_cond_seed_0_squad_batch_32",
++    logdir: "/mnt/sdb1/shpark/logdir/spider_electra_run_no_join_cond_seed_0_squad_batch_32",
+     model_config: "configs/spider/nl2code-electra.jsonnet",
+     model_config_args: {
+         join_cond: false,
+         data_path: 'data/spider/',
+-        bs: 8,
+-        num_batch_accumulated: 3,
++        bs: 24,
++        num_batch_accumulated: 1,
+         bert_version: "ahotrod/electra_large_discriminator_squad2_512",
+         #bert_version: "google/electra-large-discriminator",
+         summarize_header: "avg",
+diff --git a/ratsql/commands/train.py b/ratsql/commands/train.py
+index 83fd192..6da59f4 100644
+--- a/ratsql/commands/train.py
++++ b/ratsql/commands/train.py
+@@ -111,7 +111,7 @@ class Logger:
+         if self.skip_logging:
+             return None
+         file_name = os.path.join(self.log_dir, f"eval_result_{step}.json")
+-        with open(file_name, "w") as f:
++        with open(file_name, "w", encoding='utf-8') as f:
+             f.write(json.dumps(dic, indent=4, ensure_ascii = False))
+ 
+ 
+diff --git a/ratsql/models/nl2code/decoder.py b/ratsql/models/nl2code/decoder.py
+index f3db9e0..2c99354 100644
+--- a/ratsql/models/nl2code/decoder.py
++++ b/ratsql/models/nl2code/decoder.py
+@@ -94,7 +94,7 @@ class NL2CodeDecoderPreproc(abstract_preproc.AbstractPreproc):
+         self.grammar_identifier = grammar['name']
+         self.grammar = registry.construct('grammar', grammar)
+         self.ast_wrapper = self.grammar.ast_wrapper
+-
++        save_path = "/home/nl2qgm/data/spider/nl2code,join_cond=false,output_from=true,fs=2,emb=electrasquad,cvlink"
+         self.vocab_path = os.path.join(save_path, 'dec_vocab.json')
+         self.observed_productions_path = os.path.join(save_path, 'observed_productions.json')
+         self.grammar_rules_path = os.path.join(save_path, 'grammar_rules.json')
+diff --git a/ratsql/models/spider/spider_enc.py b/ratsql/models/spider/spider_enc.py
+index fc24361..bb82a08 100644
+--- a/ratsql/models/spider/spider_enc.py
++++ b/ratsql/models/spider/spider_enc.py
+@@ -780,7 +780,7 @@ class SpiderEncoderBertPreproc(SpiderEncoderV2Preproc):
+             use_kor_full_translate=False,):
+ 
+         self.bert_version = bert_version
+-        self.data_dir = os.path.join(save_path, 'enc')
++        self.data_dir = "/home/nl2qgm/data/spider/nl2code,join_cond=false,output_from=true,fs=2,emb=electrasquad,cvlink/enc"#os.path.join(save_path, 'enc')
+         self.db_path = db_path
+         self.texts = collections.defaultdict(list)
+         self.fix_issue_16_primary_keys = fix_issue_16_primary_keys
+diff --git a/ratsql/resources/corenlp.py b/ratsql/resources/corenlp.py
+index 64b9eae..1639783 100644
+--- a/ratsql/resources/corenlp.py
++++ b/ratsql/resources/corenlp.py
+@@ -1,7 +1,7 @@
+ import os
+ import sys
+ 
+-import corenlp
++from stanfordnlp.server import CoreNLPClient
+ import requests
+ 
+ 
+@@ -19,7 +19,7 @@ class CoreNLP:
+                 Direct URL: http://nlp.stanford.edu/software/stanford-corenlp-full-2018-10-05.zip
+                 Landing page: https://stanfordnlp.github.io/CoreNLP/''')
+         # TODO: find another available port if someone uses 9000 port
+-        self.client = corenlp.CoreNLPClient(endpoint="http://localhost:9000")
++        self.client = CoreNLPClient(endpoint="http://localhost:9000")
+ 
+     def __del__(self):
+         self.client.stop()
+@@ -27,7 +27,7 @@ class CoreNLP:
+     def annotate(self, text, annotators=None, output_format=None, properties=None):
+         try:
+             result = self.client.annotate(text, annotators, output_format, properties)
+-        except (corenlp.client.PermanentlyFailedException,
++        except (self.client.PermanentlyFailedException,
+                 requests.exceptions.ConnectionError) as e:
+             print('\nWARNING: CoreNLP connection timeout. Recreating the server...', file=sys.stderr)
+             self.client.stop()
