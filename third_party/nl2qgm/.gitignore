@@ -142,14 +142,11 @@ att_dirs/
 *.desc
 
 third_party/stanford-*
-data/*
 false/
-data/
 venv_*
 *.out
 logs_relation_embedding/
 tmps/
-data/
 saved_schema/
 spider_kor-best_model.pt
 best_model.pt
