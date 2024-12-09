@@ -32,7 +32,7 @@
         }
     },
     "data": {
-        "database_path": "/home/shpark/sqlbot/third_party/nl2qgm/data/spider/database/",
-        "table_path": "/home/shpark/sqlbot/third_party/nl2qgm/data/spider/tables.json"
+        "database_path": "/workspaces/SQLBot/third_party/nl2qgm/data/spider/database",
+        "table_path": "/workspaces/SQLBot/third_party/nl2qgm/data/spider/tables.json"
     }
 }
