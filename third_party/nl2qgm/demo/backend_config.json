@@ -32,7 +32,7 @@
         }
     },
     "data": {
-        "database_path": "third_party/nl2qgm/data/spider/database",
-        "table_path": "third_party/nl2qgm/data/spider/tables.json"
+        "database_path": "data/spider/database",
+        "table_path": "data/spider/tables.json"
     }
 }

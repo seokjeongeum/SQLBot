@@ -2,6 +2,7 @@ import os
 import sys
 
 from stanfordnlp.server import CoreNLPClient
+from stanfordnlp.server.client import PermanentlyFailedException
 import requests
 
 
@@ -19,7 +20,7 @@ class CoreNLP:
                 Direct URL: http://nlp.stanford.edu/software/stanford-corenlp-full-2018-10-05.zip
                 Landing page: https://stanfordnlp.github.io/CoreNLP/''')
         # TODO: find another available port if someone uses 9000 port
-        self.client = CoreNLPClient(endpoint="http://localhost:9000")
+        self.client = CoreNLPClient(endpoint="http://localhost:10000")
 
     def __del__(self):
         self.client.stop()
@@ -27,7 +28,7 @@ class CoreNLP:
     def annotate(self, text, annotators=None, output_format=None, properties=None):
         try:
             result = self.client.annotate(text, annotators, output_format, properties)
-        except (self.client.PermanentlyFailedException,
+        except (PermanentlyFailedException,
                 requests.exceptions.ConnectionError) as e:
             print('\nWARNING: CoreNLP connection timeout. Recreating the server...', file=sys.stderr)
             self.client.stop()

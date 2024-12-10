@@ -1,6 +1,6 @@
 {
     logdir: "/mnt/sdb1/shpark/logdir/cosql-history",
-    model_config: "/workspaces/SQLBot/third_party/nl2qgm/configs/cosql/user_intent-electra.jsonnet",
+    model_config: "configs/cosql/user_intent-electra.jsonnet",
     model_config_args: {
         data_path: 'data/cosql_dataset/',
         bs: 24,

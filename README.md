@@ -1,3 +1,11 @@
 # SQLBot
-export PYTHONPATH=.:third_party/nl2qgm:third_party/nl2qgm/ratsql/resources
-CUDA_VISIBLE_DEVICES=1 python third_party/nl2qgm/demo/backend_server.py
+```bash
+python3.10 -m pip install hydra-core
+python3.10 -m pip install -r requirements.txt
+
+cd SQLBot/third_party/nl2qgm
+export PYTHONPATH=.:ratsql/resources
+CUDA_VISIBLE_DEVICES=1 python3.10 demo/backend_server.py
+
+python3.10 SQLBot/third_party/LLMIntentIdentifier/intent_identifying.py
+```
