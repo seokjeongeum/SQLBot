@@ -1,7 +1,13 @@
-import { API_ADDR, fetchWithTimeout } from '@/lib/api/utils';
-import { queryResult } from '@/lib/query/type';
+import { fetchWithTimeout } from '@/lib/api/utils';
+import { tunerQueryResult } from '@/lib/query/type';
 
-export async function getQueryResult(dbName: string, query: string): Promise<queryResult> {
-    const addr = "/api/database/query?dbName=" + dbName + "&query="+ query;
-    return fetchWithTimeout(addr).then(res => res.json());
+export async function getQueryResult(dbName: string, query: string): Promise<tunerQueryResult> {
+    const addr = "http://localhost:12345/query";
+    console.log('getQueryResult');
+    return fetchWithTimeout(addr, {
+        method: 'POST', headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(query),
+    }).then(res => res.json());
 }

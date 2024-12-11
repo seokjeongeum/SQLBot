@@ -1,11 +1,11 @@
 "use client";
+import { useKnobsContext } from "@/context/knobsContext";
 import { useKnobSidebarOpenContext } from "@/context/knobSideBarContext";
 import SideBar from "@/ui/sidebar/sidebar";
-import { ALL_KNOB_INFO } from "@/lib/database/types";
-
 export default function ConversationalKnobSideBar({ children }: { children: React.ReactNode }) {
     const { isKnobSidebarOpen, setIsKnobSidebarOpen } = useKnobSidebarOpenContext();
 
+    const { knobs } = useKnobsContext();
     return (
         <div className="flex flex-row h-screen">
             <SideBar title={"Knob Information"} isOpen={isKnobSidebarOpen} setIsOpen={setIsKnobSidebarOpen}>
@@ -18,10 +18,10 @@ export default function ConversationalKnobSideBar({ children }: { children: Reac
                             </tr>
                         </thead>
                         <tbody>
-                            {Object.entries(ALL_KNOB_INFO).map(([knobName, defaultValue]) => (
-                                <tr key={knobName}>
-                                    <td className="border border-gray-300 px-4 py-2">{knobName}</td>
-                                    <td className="border border-gray-300 px-4 py-2">{defaultValue}</td>
+                            {knobs.map(([name, value]) => (
+                                <tr key={name}>
+                                    <td className="border border-gray-300 px-4 py-2">{name}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{value}</td>
                                 </tr>
                             ))}
                         </tbody>

@@ -6,7 +6,12 @@ export default function SideBar({ title, isOpen, setIsOpen, children }: { title:
 
     return (
         <React.Fragment>
-            <Drawer placement={"left" as SlideDirection} onClose={() => setIsOpen(false)} isOpen={isOpen}>
+            <Drawer
+                placement={"left" as SlideDirection}
+                onClose={() => setIsOpen(false)}
+                isOpen={isOpen}
+                size={"lg"}
+            >
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerHeader borderBottomWidth="1px">{title}</DrawerHeader>

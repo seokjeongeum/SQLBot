@@ -3,5 +3,10 @@ export type queryResultItem = {
 };
 
 export type queryResult = queryResultItem[];
-  
 
+export type tunerQueryResult = {
+    data: queryResult;
+    execution_time: number;
+    queries: string[];
+    execution_times: number[];
+};

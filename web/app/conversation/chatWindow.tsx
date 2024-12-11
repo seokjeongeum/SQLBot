@@ -1,15 +1,15 @@
 "use client";
 import { useChatContext } from "@/context/chatContext";
 import { useDatabaseContext } from "@/context/databaseContext";
+import { useTuningResultContext } from "@/context/dbtuningContext";
 import { useQueryResultContext } from "@/context/queryResultContext";
 import { useQuestionSqlContext } from "@/context/questionSqlContext";
-import { useTuningResultContext } from "@/context/dbtuningContext";
 import { MessageType, RESET_MESSAGE } from "@/lib/message/types";
 import { DBAdminBotMessageToMessageModel, filterMessagesByType, filterUserMessages } from "@/lib/message/utils";
 import { useSummarizationFromTable } from "@/lib/model/table2text/get";
-import { useDBTuning } from "@/lib/model/tuning/get";
 import { summarizationInput } from "@/lib/model/table2text/type";
 import { useResetTranslationHistory, useTranslatedSQLByQuestion } from "@/lib/model/text2sql/get";
+import { TuningResultPair } from "@/lib/model/tuning/type";
 import { useResultByQuery } from "@/lib/query/get";
 import { Button, ChatContainer, MainContainer, Message, MessageInput, MessageList, MessageSeparator, SendButton, TypingIndicator } from "@chatscope/chat-ui-kit-react";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
@@ -38,50 +38,51 @@ export default function ChatWindow() {
     const SQLMessages = useMemo(() => filterMessagesByType(messages, MessageType.isSQL), [messages]);
     const userMessages = useMemo(() => filterUserMessages(messages), [messages]);
 
-    const localQueryResult = useResultByQuery(selectedDB, SQLMessages[SQLMessages.length -1]?.message);
+    //3. Query and get result
+    const localQueryResult = useResultByQuery(selectedDB, SQLMessages[SQLMessages.length - 1]?.message);
+    //2. Translate to SQL
     const translationResult = useTranslatedSQLByQuestion(selectedDB, userMessages[userMessages.length - 1]?.message, messages[messages.length - 2]?.message == RESET_MESSAGE)
     const summarizationResult = useSummarizationFromTable(localQueryResult.data as unknown as summarizationInput);
     const tmpResetResponse = useResetTranslationHistory(resetSession);
-    const tuningResult = useDBTuning(questionSqlPairs, localQueryResult.isTuning);
-    
-    useEffect(() => {
-        if (tuningResult && isWaitingTuning) {
-            console.log('tuningResult', tuningResult);
-            setTuningResultPairs(tuningResult);
-            setIsWaitingTuning(false);
-        }
-        else if (tuningResult == undefined || tuningResult == null) {
-            setTuningResultPairs([]);
-        }
-    }, [tuningResult, isWaitingTuning]);
+    // const tuningResult = useDBTuning(questionSqlPairs, localQueryResult.isTuning);
 
-    useEffect(() => {
-        if (
-            translationResult?.data?.pred_sql && 
-            userMessages?.[userMessages.length - 1]?.message
-        ) {
-            const isDuplicate = questionSqlPairs.some(pair => 
-                pair.question === userMessages[userMessages.length - 1]?.message
-            );
-            // Check if the user message is "conduct tuning"
-            const isConductTuning = translationResult?.data?.pred_sql === "conduct tuning";
-            // do not add to questionSqlPairs if the user message is "conduct tuning" not or duplicate
-            if (!isDuplicate || !translationHandled) {
-                if (!isConductTuning) {
-                const newPair = {
-                    qid: questionSqlPairs.length,
-                    question: userMessages[userMessages.length - 1]?.message,
-                    sql: translationResult?.data.pred_sql,
-                    execution_time: 10
-                };
-                setQuestionSqlPairs(prevPairs => [...prevPairs, newPair]);
-                setTranslationHandled(true); // Mark as handled to avoid repeating
-            }
-            }
-        }
-    }, [translationResult?.data?.pred_sql, userMessages, questionSqlPairs, translationHandled]);
-    
-    console.log(questionSqlPairs);
+    // useEffect(() => {
+    //     if (tuningResult && isWaitingTuning) {
+    //         console.log('tuningResult', tuningResult);
+    //         setTuningResultPairs(tuningResult);
+    //         setIsWaitingTuning(false);
+    //     }
+    //     else if (tuningResult == undefined || tuningResult == null) {
+    //         setTuningResultPairs([]);
+    //     }
+    // }, [tuningResult, isWaitingTuning]);
+
+    // useEffect(() => {
+    //     if (
+    //         translationResult?.data?.pred_sql &&
+    //         userMessages?.[userMessages.length - 1]?.message
+    //     ) {
+    //         const isDuplicate = questionSqlPairs.some(pair =>
+    //             pair.question === userMessages[userMessages.length - 1]?.message
+    //         );
+    //         // Check if the user message is "conduct tuning"
+    //         const isConductTuning = translationResult?.data?.pred_sql === "conduct tuning";
+    //         // do not add to questionSqlPairs if the user message is "conduct tuning" not or duplicate
+    //         if (!isDuplicate || !translationHandled) {
+    //             if (!isConductTuning) {
+    //                 const newPair = {
+    //                     qid: questionSqlPairs.length,
+    //                     question: userMessages[userMessages.length - 1]?.message,
+    //                     sql: translationResult?.data.pred_sql,
+    //                     execution_time: 10
+    //                 };
+    //                 setQuestionSqlPairs(prevPairs => [...prevPairs, newPair]);
+    //                 setTranslationHandled(true); // Mark as handled to avoid repeating
+    //             }
+    //         }
+    //     }
+    // }, [translationResult?.data?.pred_sql, userMessages, questionSqlPairs, translationHandled]);
+
     useEffect(() => {
         // Reset translationHandled whenever a new message is added
         if (isWaitingTranslation) {
@@ -93,8 +94,9 @@ export default function ChatWindow() {
         const valueWithoutHTML = striptags(value).replace('&gt;', '>').replace('&lt;', '<');
         const valueWithoutHTML_ = valueWithoutHTML.replace(/ &nbsp;/g, ' ');
         setInputMessage(valueWithoutHTML_);
-      };
+    };
 
+    //1. Handle input
     const inputHandler = () => {
         // Make request to the backend server
         setMessages([
@@ -112,20 +114,20 @@ export default function ChatWindow() {
 
     // Reset message if the selected database is changed
     useEffect(() => {
-        if(selectedDB){
+        if (selectedDB) {
             setMessages([{
                 message: WELCOME_MESSAGE,
                 confidence: 100,
                 type: MessageType.isSystemMessage,
                 intent: null,
-            },{
+            }, {
                 message: `You have selected "${selectedDB}" database. Please ask me a question.`,
                 confidence: 100,
                 type: MessageType.isSystemMessage,
                 intent: null,
             }]);
         }
-        else{
+        else {
             setMessages([{
                 message: WELCOME_MESSAGE,
                 confidence: 100,
@@ -137,7 +139,7 @@ export default function ChatWindow() {
 
     // unset reset session flag if the reset session response is received
     useEffect(() => {
-        if(tmpResetResponse.data){
+        if (tmpResetResponse.data) {
             setResetSession(false);
         }
     }, [setResetSession, tmpResetResponse]);
@@ -179,7 +181,7 @@ export default function ChatWindow() {
 
     // Handle the translation response from the backend server 
     useEffect(() => {
-        if(translationResult?.data && isWaitingTranslation) {
+        if (translationResult?.data && isWaitingTranslation) {
             const newMessages = [
                 ...messages.slice(0, -1),
                 // Correct the last user message with predicted intent
@@ -217,7 +219,7 @@ export default function ChatWindow() {
                     });
                     setIsWaitingSummarization(false);
                 }
-                else{
+                else {
                     setIsWaitingSummarization(true);
                 }
             }
@@ -229,34 +231,75 @@ export default function ChatWindow() {
     }, [selectedDB, messages, setMessages, setQueryResult, translationResult?.data, isWaitingTranslation])
 
     // Handle the execution response from the backend server 
+    //4. Set query result
     useEffect(() => {
         if (localQueryResult.data) {
             setQueryResult(localQueryResult.data);
         }
-        else if (localQueryResult.data == undefined || localQueryResult.data == null) {
+        else if (localQueryResult.data == undefined) {
             setQueryResult(null);
             if (localQueryResult.isTuning) {
                 setIsWaitingSummarization(false);
                 setIsWaitingTuning(true);
             }
         }
-    }, [selectedDB, setQueryResult, localQueryResult.data, localQueryResult.isTuning]);
+        if (localQueryResult.execution_times) {
+            const c: TuningResultPair[] = [];
+            for (let i = 0; i < localQueryResult.execution_times.length; ++i) {
+                c.push({
+                    execution_time_after_tuning: localQueryResult.execution_times[i],
+                    execution_time: questionSqlPairs[i].execution_time,
+                    qid: i,
+                    question: questionSqlPairs[i].question,
+                    sql: questionSqlPairs[i].sql,
+                })
+            }
+            setTuningResultPairs(tuningResultPairs => c);
+            setTranslationHandled(true); // Mark as handled to avoid repeating
+            setIsWaitingTuning(false);
+        }
+        if (
+            translationResult?.data?.pred_sql &&
+            userMessages?.[userMessages.length - 1]?.message
+        ) {
+            const isDuplicate = questionSqlPairs.some(pair =>
+                pair.question === userMessages[userMessages.length - 1]?.message
+            );
+            // Check if the user message is "conduct tuning"
+            const isConductTuning = translationResult?.data?.pred_sql === "conduct tuning";
+            // do not add to questionSqlPairs if the user message is "conduct tuning" not or duplicate
+            if (!isDuplicate || !translationHandled) {
+                if (localQueryResult.executionTime) {
+                    if (!isConductTuning) {
+                        const newPair = {
+                            qid: questionSqlPairs.length,
+                            question: userMessages[userMessages.length - 1]?.message,
+                            sql: translationResult?.data.pred_sql,
+                            execution_time: localQueryResult.executionTime,
+                        };
+                        setQuestionSqlPairs(prevPairs => [...prevPairs, newPair]);
+                        setTranslationHandled(true); // Mark as handled to avoid repeating
+                    }
+                }
+            }
+        }
+    }, [selectedDB, setQueryResult, localQueryResult.data, localQueryResult.isTuning, localQueryResult.execution_times]);
 
     return (
         <React.Fragment>
-            <div style={{ position: "relative", height: "500px",paddingLeft: "20px", paddingRight: "20px" }}>
+            <div style={{ position: "relative", height: "500px", paddingLeft: "20px", paddingRight: "20px" }}>
                 <MainContainer>
                     <ChatContainer>
                         <MessageList typingIndicator={isWaitingTranslation || isWaitingSummarization ? typingIndicator : null}>
                             {chatScopeMessages.map((message, idx) => (
                                 message.message == RESET_MESSAGE
-                                ?
-                                <MessageSeparator key={idx} content="End of session" />
-                                :
-                                <Message key={idx} model={message} >
-                                    <Message.Footer sentTime={message.sentTime} />
-                                </Message>
-                                
+                                    ?
+                                    <MessageSeparator key={idx} content="End of session" />
+                                    :
+                                    <Message key={idx} model={message} >
+                                        <Message.Footer sentTime={message.sentTime} />
+                                    </Message>
+
                             ))}
                         </MessageList>
 
@@ -269,9 +312,9 @@ export default function ChatWindow() {
                             }}>
                             <MessageInput
                                 style={{
-                                flexGrow: 1,
-                                borderTop: 0,
-                                flexShrink: "initial"
+                                    flexGrow: 1,
+                                    borderTop: 0,
+                                    flexShrink: "initial"
                                 }}
                                 placeholder="Natural Language Query"
                                 value={inputMessage}
@@ -280,24 +323,24 @@ export default function ChatWindow() {
                                 sendButton={false} attachButton={false} />
                             <SendButton
                                 style={{
-                                fontSize: "1.2em",
-                                marginLeft: 0,
-                                paddingLeft: "0.2em",
-                                paddingRight: "0.2em"
+                                    fontSize: "1.2em",
+                                    marginLeft: 0,
+                                    paddingLeft: "0.2em",
+                                    paddingRight: "0.2em"
                                 }}
                                 onClick={inputHandler}
                                 disabled={false} />
                             <Button
                                 style={{
-                                fontSize: "1.2em",
-                                marginLeft: 0,
-                                paddingLeft: "0.2em",
-                                paddingRight: "0.2em"
+                                    fontSize: "1.2em",
+                                    marginLeft: 0,
+                                    paddingLeft: "0.2em",
+                                    paddingRight: "0.2em"
                                 }}
                                 onClick={() => setResetSession(true)}>
                                 <BsFillEraserFill />
                             </Button>
-                            </div>
+                        </div>
                     </ChatContainer>
                 </MainContainer>
             </div>

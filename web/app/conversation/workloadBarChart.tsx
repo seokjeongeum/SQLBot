@@ -7,7 +7,7 @@ const isNumeric = (value: string): boolean => {
 
 const valueFormatter = (number: any) => `${new Intl.NumberFormat("us").format(number).toString()}`;
 
-const findCategoricalColIndex = (colNames: string[], rows: (string|number)[][]) => {
+const findCategoricalColIndex = (colNames: string[], rows: (string | number)[][]) => {
   // find the type of each column by checking the first row
   const categoricalColIndex: number[] = [];
   for (let i = 0; i < colNames.length; i++) {
@@ -15,13 +15,13 @@ const findCategoricalColIndex = (colNames: string[], rows: (string|number)[][]) 
       categoricalColIndex.push(i);
     }
   }
-  if (categoricalColIndex.length == 0){
+  if (categoricalColIndex.length == 0) {
     return -1;
   }
   return categoricalColIndex[0];
 };
 
-const findNumericColIndex = (colNames: string[], rows: (string|number)[][]): number[] => {
+const findNumericColIndex = (colNames: string[], rows: (string | number)[][]): number[] => {
   const numericColIndex: number[] = [];
   for (let i = 0; i < colNames.length; i++) {
     if (typeof rows[0][i] === "number" || isNumeric(rows[0][i] as string)) {
@@ -31,7 +31,7 @@ const findNumericColIndex = (colNames: string[], rows: (string|number)[][]): num
   return numericColIndex;
 }
 
-const toChartData = (colNames: string[], rows: (string|number)[][]) => {
+const toChartData = (colNames: string[], rows: (string | number)[][]) => {
   // Convert into chart data format
   const categoricalColIndex = findCategoricalColIndex(colNames, rows);
   // const numericColIndex = findNumericColIndex(colNames, rows);
@@ -72,7 +72,7 @@ export default function WorkloadBarChartWindow({ title, colNames, rows }: { titl
             data={chartData}
             index="name" // Ensure the index corresponds to the key representing unique rows
             categories={numericColIndices.map((index) => colNames[index])} // Map numeric column indices to names
-            colors={["blue", "green", "red", "yellow", "purple", "orange", "pink", "brown", "gray", "black"]} // Use different colors if there are multiple columns
+            colors={["blue", "green", "red", "yellow", "purple", "orange", "pink", "gray"]} // Use different colors if there are multiple columns
             valueFormatter={valueFormatter}
             yAxisWidth={100}
             rotateLabelX={{ angle: 35, xAxisHeight: 85, verticalShift: 35 }}

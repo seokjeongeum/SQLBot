@@ -1,12 +1,13 @@
 import { ChatContextProvider } from "@/context/chatContext";
+import { DatabaseContextProvider } from "@/context/databaseContext";
+import { TuningResultProvider } from "@/context/dbtuningContext";
+import { KnobsContextProvider } from "@/context/knobsContext";
+import { KnobSidebarOpenContextContextProvider } from "@/context/knobSideBarContext";
 import { QueryResultContextProvider } from "@/context/queryResultContext";
+import { QuestionSqlProvider } from "@/context/questionSqlContext";
 import { SchemaModalContextContextProvider } from "@/context/schemaModalContext";
 import { SidebarOpenContextContextProvider } from "@/context/sideBarContext";
-import { DatabaseContextProvider } from "@/context/databaseContext";
-import { KnobSidebarOpenContextContextProvider } from "@/context/knobSideBarContext";
 import { WorkloadContextProvider } from "@/context/workloadModalContext";
-import { QuestionSqlProvider } from "@/context/questionSqlContext";
-import { TuningResultProvider } from "@/context/dbtuningContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
     return (
@@ -19,7 +20,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
                                 <WorkloadContextProvider>
                                     <SchemaModalContextContextProvider>
                                         <DatabaseContextProvider>
-                                            {children}
+                                            <KnobsContextProvider>
+                                                {children}
+                                            </KnobsContextProvider>
                                         </DatabaseContextProvider>
                                     </SchemaModalContextContextProvider>
                                 </WorkloadContextProvider>
