@@ -5,7 +5,7 @@ docker run --gpus all \
     --ipc=host \
     --mount type=bind,source=/mnt,target=/mnt \
     lmsysorg/sglang:latest \
-    python3 -m sglang.launch_server --model-path /mnt/sdc/jeseok/Meta-Llama-3.1-70B-Instruct-GPTQ-INT4 --host 0.0.0.0 --port 30000 --tp 1
+    python3 -m sglang.launch_server --model-path /mnt/md0/jeseok/Llama-3.1-8B --host 0.0.0.0 --port 30000 --tp 1
     
     # --dp 1
 # /mnt/sde/shpark/models/mistralai/Ministral-8B-Instruct-2410 (75, 150, 200), # (50, 100)
