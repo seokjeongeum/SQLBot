@@ -1,7 +1,7 @@
 # SQLBot
 ```bash
 python3.10 -m pip install hydra-core
-python3.10 -m pip install -r requirements.txt
+python3.10 -m pip install -r SQLBot/requirements.txt
 
 cd SQLBot/third_party/nl2qgm
 export PYTHONPATH=.:ratsql/resources

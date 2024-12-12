@@ -31,7 +31,7 @@ datasets==3.1.0
 dbus-python==1.2.18
 dill==0.3.8
 distro==1.7.0
-distro-info==1.1+ubuntu0.1
+distro-info==1.0
 docker-pycreds==0.4.0
 docopt==0.6.2
 en_core_web_trf @ https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.8.0/en_core_web_trf-3.8.0-py3-none-any.whl
