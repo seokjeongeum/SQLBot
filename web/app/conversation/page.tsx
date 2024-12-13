@@ -29,7 +29,7 @@ export default function Conversation() {
             <Button className="ml-5" color="primary" variant="flat" onClick={async () => {
                 setKnobs([]);
                 fetch(
-                    'http://localhost:12345/knobs',
+                    'http://localhost:1234/knobs',
                     {
                         method: 'POST',
                     },

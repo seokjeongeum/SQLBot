@@ -98,7 +98,7 @@ const features = [
     xlarge: true,
     xxlarge: false,
     demo: <Image
-    src="/conversation.png"
+    src="/tuning.png"
     alt="Deploy with Vercel"
     width={800}
     height={30}
@@ -113,9 +113,9 @@ const features = [
       xlarge: false,
       xxlarge: false,
       demo: <Image
-    src="/schema.png"
+    src="/workload_history.png"
     alt="Deploy with Vercel"
-    width={300}
+    width={800}
     height={30}
     unoptimized
   />,
@@ -128,7 +128,7 @@ const features = [
     xlarge: false,
     xxlarge: false,
     demo: <Image
-    src="/chartTable.png"
+    src="/tuning_result.png"
     alt="Deploy with Vercel"
     width={800}
     height={30}

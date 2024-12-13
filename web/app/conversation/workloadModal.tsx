@@ -32,7 +32,7 @@ export default function WorkloadModal({children}: {children: React.ReactNode}) {
                                                 <th className="border border-gray-300 p-2">Question ID</th>
                                                 <th className="border border-gray-300 p-2">Natural Language Question</th>
                                                 <th className="border border-gray-300 p-2">Translated SQL Query</th>
-                                                <th className="border border-gray-300 p-2">Execution Time</th>
+                                                <th className="border border-gray-300 p-2">Execution Time (ms)</th>
                                             </tr>
                                         </thead>
                                         <tbody>

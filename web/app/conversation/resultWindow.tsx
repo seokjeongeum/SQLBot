@@ -44,7 +44,7 @@ export default function ResultWindow() {
             <div className="flex w-full flex-col">
               <Tabs aria-label="Options">
                 <Tab key="Tuning" title="Execution Time Comparison">
-                  <WorkloadComparisonBarChartWindow title="Execution Time Bar Chart" questionSqlPairs={questionSqlPairs} tuningResultPairs={tuningResultPairs} />
+                  <WorkloadComparisonBarChartWindow title={"Execution Time Bar Chart"} questionSqlPairs={questionSqlPairs} tuningResultPairs={tuningResultPairs} />
                 </Tab>
               </Tabs>
             </div>

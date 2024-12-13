@@ -3,7 +3,7 @@
         "host": "0.0.0.0",
         "port": 7000,
         "redis": {
-            "host": "141.223.197.39",
+            "host": "141.223.199.1",
             "port": 6379,
             "api_text2sql_cache_db": 0,
             "api_analyze_cache_db": 1,
