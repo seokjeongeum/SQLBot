@@ -374,7 +374,7 @@ class LLM(metaclass=pattern_utils.SingletonABCMetaWithArgs):
         # Generate
         print('formatted_promt', formatted_promt)
         response_list = requests.post(
-                        "http://0.0.0.0:30000/generate",
+                        "http://141.223.199.148:30000/generate",
                         json={
                             "text": [formatted_promt],
                             "sampling_params": {
