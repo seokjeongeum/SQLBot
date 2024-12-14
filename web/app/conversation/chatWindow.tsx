@@ -4,23 +4,30 @@ import { useDatabaseContext } from "@/context/databaseContext";
 import { useTuningResultContext } from "@/context/dbtuningContext";
 import { useQueryResultContext } from "@/context/queryResultContext";
 import { useQuestionSqlContext } from "@/context/questionSqlContext";
+import { responseHeaderJson, responseMethodPost } from "@/lib/api/utils";
 import { MessageType, RESET_MESSAGE } from "@/lib/message/types";
 import { DBAdminBotMessageToMessageModel, filterMessagesByType, filterUserMessages } from "@/lib/message/utils";
-import { useSummarizationFromTable } from "@/lib/model/table2text/get";
-import { summarizationInput } from "@/lib/model/table2text/type";
 import { useResetTranslationHistory, useTranslatedSQLByQuestion } from "@/lib/model/text2sql/get";
 import { TuningResultPair } from "@/lib/model/tuning/type";
-import { useResultByQuery } from "@/lib/query/get";
+import { tunerQueryResult } from "@/lib/query/type";
 import { Button, ChatContainer, MainContainer, Message, MessageInput, MessageList, MessageSeparator, SendButton, TypingIndicator } from "@chatscope/chat-ui-kit-react";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import React, { useEffect, useMemo, useState } from "react";
 import { BsFillEraserFill } from "react-icons/bs";
 import striptags from 'striptags';
 
+import { summarizationResult } from '@/lib/model/table2text/type';
 const WELCOME_MESSAGE = "Hi, I'm DBAdminBot. I can help you to query the database using natural language. Please select a database to start.";
 const SYSTEM_END_MESSAGE = "You're welcome! If you have any more questions or need further assistance, feel free to ask.";
 const typingIndicator = <TypingIndicator content="DBAdminBot is thinking" />;
 const SESSION_END_INTENTS = ["thank_you", "affirm"];
+interface QueryResultState {
+    data: tunerQueryResult | undefined;
+    isTuning: boolean;
+    executionTime?: number;
+    queries?: string[];
+    execution_times?: number[];
+}
 
 export default function ChatWindow() {
     const { messages, setMessages } = useChatContext();
@@ -39,10 +46,58 @@ export default function ChatWindow() {
     const userMessages = useMemo(() => filterUserMessages(messages), [messages]);
 
     //3. Query and get result
-    const localQueryResult = useResultByQuery(selectedDB, SQLMessages[SQLMessages.length - 1]?.message);
+    const [localQueryResult, setLocalQueryResult] = useState<QueryResultState>();
+    useEffect(() => {
+        // Define the key for SWR based on the dbName and query.
+        // If either is not present, use null to avoid fetching.
+        const query = SQLMessages[SQLMessages.length - 1]?.message;
+        if (query) {
+            fetch("http://localhost:1234/query", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(query),
+            }).then(res => res.json()).then(j => {
+                const data = j as tunerQueryResult;
+                const isTuning = query == "conduct tuning";
+                setLocalQueryResult({
+                    data,
+                    isTuning,
+                    executionTime: data.execution_time,
+                    queries: data.queries,
+                    execution_times: data.execution_times,
+                });
+            });
+        }
+    }, [SQLMessages[SQLMessages.length - 1]?.message]);
     //2. Translate to SQL
     const translationResult = useTranslatedSQLByQuestion(selectedDB, userMessages[userMessages.length - 1]?.message, messages[messages.length - 2]?.message == RESET_MESSAGE)
-    const summarizationResult = useSummarizationFromTable(localQueryResult.data as unknown as summarizationInput);
+    // const summarizationResult = useSummarizationFromTable(localQueryResult?.data as unknown as summarizationInput);
+    // const [summarizationResult, setSummarizationResult] = useState<summarizationResult>();
+    useEffect(() => {
+        const rowValues = localQueryResult?.data?.data;
+        if (rowValues) {
+            fetch("/api/model/table2text", {
+                body: JSON.stringify({
+                    rowValues: rowValues,
+                }),
+                ...responseHeaderJson, ...responseMethodPost
+            }).then(res => res.json()).then(j => {
+                const data = j as summarizationResult;
+                setMessages([
+                    ...messages,
+                    {
+                        message: data.summary,
+                        confidence: 100,
+                        type: MessageType.isResultSummary,
+                        intent: null,
+                    }
+                ]);
+                setIsWaitingSummarization(false);
+            });
+        }
+    }, [localQueryResult?.data?.data]);
     const tmpResetResponse = useResetTranslationHistory(resetSession);
     // const tuningResult = useDBTuning(questionSqlPairs, localQueryResult.isTuning);
 
@@ -145,23 +200,23 @@ export default function ChatWindow() {
     }, [setResetSession, tmpResetResponse]);
 
 
-    // Add table summary message
-    useEffect(() => {
-        // Check if last message isSQL query and query result is not empty
-        if (isWaitingSummarization && summarizationResult.data && localQueryResult.data) {
-            // Request summarization from the backend server
-            setMessages([
-                ...messages,
-                {
-                    message: summarizationResult.data.summary,
-                    confidence: 100,
-                    type: MessageType.isResultSummary,
-                    intent: null,
-                }
-            ]);
-            setIsWaitingSummarization(false);
-        }
-    }, [messages, setMessages, isWaitingSummarization, setIsWaitingSummarization, localQueryResult.data, summarizationResult.data]);
+    // // Add table summary message
+    // useEffect(() => {
+    //     // Check if last message isSQL query and query result is not empty
+    //     if (isWaitingSummarization && summarizationResult && localQueryResult?.data) {
+    //         // Request summarization from the backend server
+    //         setMessages([
+    //             ...messages,
+    //             {
+    //                 message: summarizationResult.summary,
+    //                 confidence: 100,
+    //                 type: MessageType.isResultSummary,
+    //                 intent: null,
+    //             }
+    //         ]);
+    //         setIsWaitingSummarization(false);
+    //     }
+    // }, [messages, setMessages, isWaitingSummarization, setIsWaitingSummarization, localQueryResult?.data, summarizationResult]);
 
     // Add session reset message
     useEffect(() => {
@@ -233,17 +288,17 @@ export default function ChatWindow() {
     // Handle the execution response from the backend server 
     //4. Set query result
     useEffect(() => {
-        if (localQueryResult.data) {
-            setQueryResult(localQueryResult.data);
+        if (localQueryResult?.data) {
+            setQueryResult(localQueryResult.data.data);
         }
-        else if (localQueryResult.data == undefined) {
+        else if (localQueryResult?.data == undefined) {
             setQueryResult(null);
-            if (localQueryResult.isTuning) {
+            if (localQueryResult?.isTuning) {
                 setIsWaitingSummarization(false);
                 setIsWaitingTuning(true);
             }
         }
-        if (localQueryResult.execution_times) {
+        if (localQueryResult?.execution_times) {
             const c: TuningResultPair[] = [];
             for (let i = 0; i < localQueryResult.execution_times.length; ++i) {
                 c.push({
@@ -269,7 +324,7 @@ export default function ChatWindow() {
             const isConductTuning = translationResult?.data?.pred_sql === "conduct tuning";
             // do not add to questionSqlPairs if the user message is "conduct tuning" not or duplicate
             if (!isDuplicate || !translationHandled) {
-                if (localQueryResult.executionTime) {
+                if (localQueryResult?.executionTime) {
                     if (!isConductTuning) {
                         const newPair = {
                             qid: questionSqlPairs.length,
@@ -283,7 +338,7 @@ export default function ChatWindow() {
                 }
             }
         }
-    }, [selectedDB, setQueryResult, localQueryResult.data, localQueryResult.isTuning, localQueryResult.execution_times]);
+    }, [selectedDB, setQueryResult, localQueryResult?.data, localQueryResult?.isTuning, localQueryResult?.execution_times]);
 
     return (
         <React.Fragment>

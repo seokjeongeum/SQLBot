@@ -5,7 +5,7 @@ export function validateSameNumCols(queryResult: queryResult | null): boolean {
     if (queryResult && queryResult.length === 0) {
         return true;
     }
-    if (queryResult === null) {
+    if (queryResult === undefined || queryResult === null) {
         return false;
     }
     const numCols = Object.keys(queryResult[0]).length;

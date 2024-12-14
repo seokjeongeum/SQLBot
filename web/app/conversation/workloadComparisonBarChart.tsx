@@ -11,8 +11,6 @@ export default function WorkloadComparisonBarChartWindow({
   questionSqlPairs: QuestionSqlPair[],
   tuningResultPairs: TuningResultPair[] | null
 }) {
-  console.log('tuningResultPairs', tuningResultPairs);
-  console.log('questionSqlPairs', questionSqlPairs);
   const isValidData = useMemo(() =>
     questionSqlPairs?.length > 0 && tuningResultPairs && tuningResultPairs.length > 0,
     [questionSqlPairs, tuningResultPairs]
