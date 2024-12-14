@@ -1,2 +1,2 @@
 example_num: 3
-llm_address: "http://localhost:30000/generate"
+llm_address: "http://141.223.199.10:30000/generate"

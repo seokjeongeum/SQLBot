@@ -1,5 +1,11 @@
 # SQLBot
 ```bash
+apt update
+apt install libpq-dev python-dev -y
+apt install libcairo2-dev -y
+apt install libgirepository1.0-dev -y
+apt install libdbus-1-dev -y
+
 python3.10 -m pip install hydra-core
 python3.10 -m pip install -r SQLBot/requirements.txt
 
