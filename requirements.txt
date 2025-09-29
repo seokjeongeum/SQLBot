@@ -21,6 +21,7 @@ click==8.1.7
 cloudpathlib==0.20.0
 confection==0.1.5
 contourpy==1.3.1
+corenlp
 cryptography==3.4.8
 curated-tokenizers==0.0.9
 curated-transformers==0.1.1
@@ -28,7 +29,7 @@ cycler==0.12.1
 cymem==2.0.10
 dacite==1.8.1
 datasets==3.1.0
-dbus-python==1.2.18
+#dbus-python==1.2.18
 dill==0.3.8
 distro==1.7.0
 docker-pycreds==0.4.0
@@ -51,6 +52,7 @@ grpcio==1.68.1
 hkkang_utils==0.2.45
 httplib2==0.20.2
 huggingface-hub==0.26.5
+hydra-core
 idna==3.4
 importlib-metadata==4.6.4
 itsdangerous==2.2.0
@@ -112,13 +114,13 @@ psutil==6.1.0
 psycopg==3.2.3
 psycopg-binary==3.2.3
 psycopg-pool==3.2.4
-psycopg2==2.9.10
+psycopg2-binary==2.9.10
 pyarrow==18.1.0
-pycairo==1.27.0
+#pycairo==1.27.0
 pydantic==2.10.3
 pydantic_core==2.27.1
 Pygments==2.18.0
-PyGObject==3.42.1
+#PyGObject==3.42.1
 PyJWT==2.3.0
 pyparsing==2.4.7
 pyrsistent==0.20.0

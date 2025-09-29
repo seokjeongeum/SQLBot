@@ -29,7 +29,8 @@ class NL2IntentDecoderPreproc(abstract_preproc.AbstractPreproc):
         self.data_dir = os.path.join(save_path, 'dec')
         self.items = collections.defaultdict(list)
         # Custom
-        tables_dir = '/'.join([dir for dir in db_path.split('/') if dir][:-1])
+        # tables_dir = '/'.join([dir for dir in db_path.split('/') if dir][:-1])
+        tables_dir = os.path.dirname(db_path)
         tables_path = os.path.join(tables_dir, 'tables.json')
         db_names = [item['db_id'] for item in json.load(open(tables_path))]
         self.schemas = {}

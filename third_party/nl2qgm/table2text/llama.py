@@ -10,12 +10,12 @@ from text_generation import Client
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextStreamer
 
 # Text generation API Address
-TEXT_GENERATION_API_IP = "141.223.199.149"
+TEXT_GENERATION_API_IP = "141.223.197.19"
 TEXT_GENERATION_API_PORT = "8080"
 TEXT_GENERATION_API_ADDR = f"http://{TEXT_GENERATION_API_IP}:{TEXT_GENERATION_API_PORT}"
 
 # Initialize redis
-rd = redis.StrictRedis(host="141.223.199.149", port=6379, db=2)
+rd = redis.StrictRedis(host="141.223.197.19", port=6379, db=2)
 
 
 class LLM(metaclass=pattern_utils.SingletonABCMetaWithArgs):
@@ -374,7 +374,7 @@ class LLM(metaclass=pattern_utils.SingletonABCMetaWithArgs):
         # Generate
         print('formatted_promt', formatted_promt)
         response_list = requests.post(
-                        "http://141.223.199.10:30000/generate",
+                        "http://141.223.197.19:30000/generate",
                         json={
                             "text": [formatted_promt],
                             "sampling_params": {
