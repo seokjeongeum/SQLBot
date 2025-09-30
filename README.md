@@ -21,9 +21,8 @@ pip install -r requirements.txt
 
 ## Backend Server
 ```bash
-cd third_party/nl2qgm
-export PYTHONPATH=.:ratsql/resources
-CUDA_VISIBLE_DEVICES=1 python demo/backend_server.py
+export PYTHONPATH=third_party/nl2qgm:third_party/nl2qgm/ratsql/resources:$PYTHONPATH
+CUDA_VISIBLE_DEVICES=1 python third_party/nl2qgm/demo/backend_server.py
 ```
 
 ## Intent Identifier
